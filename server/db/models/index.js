@@ -1,6 +1,6 @@
 const User = require('./user')
-const Console = require('./consoles')
 const Game = require('./games')
+const Order = require('./orders')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
@@ -11,12 +11,11 @@ const db = require('../db')
  *    BlogPost.belongsTo(User)
  */
 
-const gameConsole = db.define('game_console', {
-  role: Sequelize.STRING
-})
+const Cart = db.define('cart', {})
 
-Game.belongsToMany(Console, {through: gameConsole})
-Console.belongsToMany(Game, {through: gameConsole})
+Game.belongsToMany(User, {through: 'cart'})
+User.hasOne(Cart)
+User.hasMany(Order)
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -27,5 +26,5 @@ Console.belongsToMany(Game, {through: gameConsole})
 module.exports = {
   User,
   Game,
-  Console
+  Order
 }
