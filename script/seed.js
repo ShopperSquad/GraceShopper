@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Order, Game} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -12,7 +12,30 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
-  console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${users.length} users successfully`)
+
+  const games = await Promise.all([
+    Game.create({
+      name: 'Super Mario Land 2: 6 Golden Coins',
+      imageUrl:
+        'https://images-na.ssl-images-amazon.com/images/I/91x1gsV0G3L._SL1500_.jpg',
+      yearOfRelease: 1992
+    }),
+    Game.create({
+      name: 'Kirby',
+      imageUrl:
+        'https://vignette.wikia.nocookie.net/kirby/images/2/2d/SSU_Kirby_artwork.png/revision/latest?cb=20180612173614&path-prefix=en',
+      yearOfRelease: 1992
+    })
+  ])
+
+  const orders = await Promise.all([
+    Order.create({
+      items: [...games]
+    })
+  ])
+
+  console.log(`seeded ${orders.length} orders successfully`)
   console.log(`seeded successfully`)
 }
 
