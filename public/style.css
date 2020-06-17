@@ -19,3 +19,37 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.test {
+  color: red;
+}
+
+td,
+table {
+  border: 1px solid black;
+}
+
+.cart-img {
+  width: 100px;
+  height: 100px;
+  display: block;
+}
+
+.cart-prod-quant {
+  width: 50px;
+}
+
+.cart-item-rmv {
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+}
+
+#cart-prod-details {
+  width: 250px;
+}
+
+#cart-prod-price {
+  width: 80px;
+}
