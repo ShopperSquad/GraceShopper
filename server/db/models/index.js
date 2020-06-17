@@ -14,6 +14,7 @@ const db = require('../db')
 const Cart = db.define('cart', {})
 
 Game.belongsToMany(User, {through: 'cart'})
+User.belongsToMany(Game, {through: 'cart'})
 User.hasOne(Cart)
 User.hasMany(Order)
 
