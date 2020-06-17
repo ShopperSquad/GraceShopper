@@ -10,7 +10,7 @@ const Game = db.define('game', {
     type: Sequelize.TEXT
   },
   price: {
-    type: Sequelize.FLOAT
+    type: Sequelize.DECIMAL
   },
   imageUrl: {
     type: Sequelize.STRING,
