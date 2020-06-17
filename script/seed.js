@@ -26,12 +26,70 @@ async function seed() {
       imageUrl:
         'https://vignette.wikia.nocookie.net/kirby/images/2/2d/SSU_Kirby_artwork.png/revision/latest?cb=20180612173614&path-prefix=en',
       yearOfRelease: 1992
+    }),
+    Game.create({
+      name: 'Pokemon Yellow',
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/pt/4/43/Pok%C3%A9mon_Yellow_cover.png',
+      yearOfRelease: 1998
+    }),
+    Game.create({
+      name: "Gargoyle's Quest",
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Gargoyles_Quest.jpg/220px-Gargoyles_Quest.jpg',
+      yearOfRelease: 1990
+    }),
+    Game.create({
+      name: 'Dr. Mario',
+      imageUrl: 'https://pbs.twimg.com/media/EOeUdt4W4AEqh-t.png',
+      yearOfRelease: 1990
+    }),
+    Game.create({
+      name: 'Final Fantasy Adventure',
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/en/thumb/8/88/Final_Fantasy_Adventure_Front_Cover.jpg/220px-Final_Fantasy_Adventure_Front_Cover.jpg',
+      yearOfRelease: 1991
+    }),
+    Game.create({
+      name: 'Yoshi',
+      imageUrl:
+        'https://52f4e29a8321344e30ae-0f55c9129972ac85d6b1f4e703468e6b.ssl.cf2.rackcdn.com/products/pictures/237642.jpg',
+      yearOfRelease: 1991
+    }),
+    Game.create({
+      name: "Kirby's Dream Land",
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/en/thumb/8/88/Final_Fantasy_Adventure_Front_Cover.jpg/220px-Final_Fantasy_Adventure_Front_Cover.jpg',
+      yearOfRelease: 1991
+    }),
+    Game.create({
+      name: "The Legend of Zelda: Link's Awakening",
+      imageUrl:
+        'https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/a/ac/LA_Original_Soundtrack_Game_Boy_Cover.jpg/1200px-LA_Original_Soundtrack_Game_Boy_Cover.jpg',
+      yearOfRelease: 1993
+    }),
+    Game.create({
+      name: 'Donkey Kong Land',
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/en/8/8c/Donkey_Kong_Land_Coverart.png',
+      yearOfRelease: 1995
+    }),
+    Game.create({
+      name: 'Teenage Mutant Ninja Turtles III: Radical Rescue',
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/en/f/fd/Teenage_Mutant_Ninja_Turtles_III_-_Radical_Rescue_Coverart.png',
+      yearOfRelease: 1993
     })
   ])
 
   const orders = await Promise.all([
     Order.create({
-      items: [...games]
+      items: [games[0], games[4]],
+      userId: 1
+    }),
+    Order.create({
+      items: [games[5], games[3]],
+      userId: 2
     })
   ])
 

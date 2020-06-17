@@ -17,7 +17,17 @@ const Game = db.define('game', {
     defaultValue: '/joystick.png'
   },
   yearOfRelease: {
-    type: Sequelize.DATEONLY
+    type: Sequelize.INTEGER
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    validate: {
+      min: 0
+    }
+  },
+
+  console: {
+    type: Sequelize.ENUM('Game Boy', 'SNES', 'NES', 'Sega Genesis', 'Game Gear')
   }
 })
 
