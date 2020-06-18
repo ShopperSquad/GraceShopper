@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {CartProductCard} from './CartProductCard'
 import {removeItemFromCart, updateCartQuant} from '../store/user'
+import {OrderSummaryCard} from './OrderSummaryCard'
 
 export class myCart extends React.Component {
   constructor() {
@@ -26,6 +27,7 @@ export class myCart extends React.Component {
         <table>
           <thead>
             <tr>
+              <th>Image</th>
               <th>Product</th>
               <th>Price</th>
               <th>Quantity</th>
@@ -51,6 +53,7 @@ export class myCart extends React.Component {
             )}
           </tbody>
         </table>
+        <OrderSummaryCard cartItems={this.props.cartItems} />
       </div>
     )
   }

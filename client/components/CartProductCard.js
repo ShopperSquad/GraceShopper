@@ -4,13 +4,10 @@ export const CartProductCard = props => {
   return (
     <tr>
       <td>
-        <img
-          src="https://img.favpng.com/10/12/1/space-invaders-video-game-pac-man-computer-icons-png-favpng-zy3vDd2cjtu7tiEqV39Hp3f28.jpg"
-          className="cart-img"
-        />
+        <img src={props.game.imageUrl} className="cart-img" />
       </td>
       <td id="cart-prod-details">{props.game.name}</td>
-      <td className="cart-prod-price">${props.game.price}</td>
+      <td className="cart-prod-price">${props.game.price / 100}</td>
       <td className="cart-prod-quant">
         <input
           type="number"
@@ -22,7 +19,9 @@ export const CartProductCard = props => {
           }
         />
       </td>
-      <td className="cart-prod-price">$20.00</td>
+      <td className="cart-prod-price">
+        ${props.game.price * props.game.cart.quantity / 100}
+      </td>
       <td>
         <button
           type="button"
