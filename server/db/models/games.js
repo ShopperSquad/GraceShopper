@@ -4,13 +4,20 @@ const db = require('../db')
 const Game = db.define('game', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   description: {
     type: Sequelize.TEXT
   },
   price: {
-    type: Sequelize.DECIMAL
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   imageUrl: {
     type: Sequelize.STRING,
@@ -25,10 +32,20 @@ const Game = db.define('game', {
       min: 0
     }
   },
-
   console: {
     type: Sequelize.ENUM('Game Boy', 'SNES', 'NES', 'Sega Genesis', 'Game Gear')
   }
 })
+
+//helper function to convert input price in dollars to integer price in cents
+Game.prototype.dollarsToPennies = async function(priceInDollars) {
+  this.price = priceInDollars * 100
+  await this.save()
+}
+
+Game.prototype.penniesToDollars = async function() {
+  this.price = this.price / 100
+  await this.save()
+}
 
 module.exports = Game
