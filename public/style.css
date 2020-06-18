@@ -1,5 +1,31 @@
+:root {
+  --mainBlue: #2a2a72;
+  --lightBlue: #009ffd;
+  --mainWhite: #f3f3f3;
+  --mainDark: #232528;
+  --mainYellow: #ffa400;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: 'VT323', monospace !important;
+  font-size: 20px !important;
+  background: var(--mainWhite) !important;
+  color: var(--mainDark) !important;
+}
+
+/* for titles  */
+.text-title {
+  font-family: 'VT323', monospace;
+  letter-spacing: 0.1rem;
+  /* text-transform: uppercase; */
+}
+/* for descriptions */
+.text-blue {
+  color: var(--mainBlue);
+}
+
+.text-bright {
+  color: var(--lightBlue);
 }
 
 a {
@@ -9,13 +35,18 @@ a {
 label {
   display: block;
 }
-
+/*
 nav a {
   display: inline-block;
   margin: 1em;
-}
+} */
 
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.navbar a {
+  justify-content: flex-start !important;
+  margin: 1em;
 }
