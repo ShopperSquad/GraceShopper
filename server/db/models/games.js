@@ -38,8 +38,13 @@ const Game = db.define('game', {
 })
 
 //helper function to convert input price in dollars to integer price in cents
-Game.prototype.integerPrice = async function(priceInDollars) {
+Game.prototype.dollarsToPennies = async function(priceInDollars) {
   this.price = priceInDollars * 100
+  await this.save()
+}
+
+Game.prototype.penniesToDollars = async function() {
+  this.price = this.price / 100
   await this.save()
 }
 
