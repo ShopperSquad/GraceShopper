@@ -1,6 +1,7 @@
 const User = require('./user')
 const Game = require('./games')
 const Order = require('./orders')
+const Cart = require('./carts')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
@@ -10,8 +11,6 @@ const db = require('../db')
  *
  *    BlogPost.belongsTo(User)
  */
-
-const Cart = db.define('cart', {})
 
 Game.belongsToMany(User, {through: 'cart'})
 User.belongsToMany(Game, {through: 'cart'})
@@ -27,5 +26,6 @@ User.hasMany(Order)
 module.exports = {
   User,
   Game,
-  Order
+  Order,
+  Cart
 }
