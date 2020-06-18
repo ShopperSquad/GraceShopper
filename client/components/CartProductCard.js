@@ -14,7 +14,11 @@ export const CartProductCard = props => {
       <td className="cart-prod-quant">1</td>
       <td className="cart-prod-price">$20.00</td>
       <td>
-        <button type="button" className="cart-item-rmv">
+        <button
+          type="button"
+          className="cart-item-rmv"
+          onClick={() => props.removeItem(props.game.id)}
+        >
           Remove
         </button>
       </td>
