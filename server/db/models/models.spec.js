@@ -1,8 +1,8 @@
 /* global describe beforeEach it */
 
-const {expect} = require('chai')
-const db = require('../index')
-const {Console, Game} = db.model('console', 'game')
+// const {expect} = require('chai')
+// const db = require('../index')
+// const {Console, Game} = db.model('console', 'game')
 
 //Need to adjust for games and consoles. Disregard if it still says Users
 // describe('User model', () => {

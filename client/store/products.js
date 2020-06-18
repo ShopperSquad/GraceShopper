@@ -3,12 +3,12 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
-const SET_PRODUCTS = 'GET_PRODUCTS'
+export const SET_PRODUCTS = 'GET_PRODUCTS'
 
 /**
  * ACTION CREATORS
  */
-const setProducts = products => ({type: SET_PRODUCTS, products})
+export const setProducts = products => ({type: SET_PRODUCTS, products})
 
 /**
  * THUNK CREATORS
