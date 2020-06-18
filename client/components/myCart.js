@@ -1,16 +1,22 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {CartProductCard} from './CartProductCard'
-import {removeItemFromCart} from '../store/user'
+import {removeItemFromCart, updateCartQuant} from '../store/user'
 
 export class myCart extends React.Component {
   constructor() {
     super()
     this.removeCartItem = this.removeCartItem.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   removeCartItem(gameId) {
     this.props.removeItem(gameId)
+  }
+
+  handleChange(gameId, userId, event) {
+    let val = Number(event.target.value)
+    this.props.updateCartQuantity({gameId, userId, value: val})
   }
 
   render() {
@@ -38,6 +44,7 @@ export class myCart extends React.Component {
                     key={game.id}
                     game={game}
                     removeItem={this.removeCartItem}
+                    handleChange={this.handleChange}
                   />
                 )
               })
@@ -57,7 +64,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    removeItem: gameId => dispatch(removeItemFromCart(gameId))
+    removeItem: gameId => dispatch(removeItemFromCart(gameId)),
+    updateCartQuantity: obj => dispatch(updateCartQuant(obj))
   }
 }
 

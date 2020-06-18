@@ -11,7 +11,17 @@ export const CartProductCard = props => {
       </td>
       <td id="cart-prod-details">{props.game.name}</td>
       <td className="cart-prod-price">${props.game.price}</td>
-      <td className="cart-prod-quant">1</td>
+      <td className="cart-prod-quant">
+        <input
+          type="number"
+          name="cart-quant"
+          defaultValue={props.game.cart.quantity}
+          min="1"
+          onChange={e =>
+            props.handleChange(props.game.id, props.game.cart.userId, e)
+          }
+        />
+      </td>
       <td className="cart-prod-price">$20.00</td>
       <td>
         <button
