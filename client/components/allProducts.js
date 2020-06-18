@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/products'
 import Product from './productCard'
+import Title from './title'
 
 export class AllProducts extends React.Component {
   componentDidMount() {
@@ -12,13 +13,16 @@ export class AllProducts extends React.Component {
   render() {
     const {products} = this.props
     return (
-      <div className="row">
-        <div className="col s6">
-          {products && products.length
-            ? products.map(product => {
-                return <Product product={product} key={product.id} />
-              })
-            : 'No products'}
+      <div className="container py-5">
+        <Title />
+        <div className="row row-cols-2">
+          <div className="col">
+            {products && products.length
+              ? products.map(product => {
+                  return <Product product={product} key={product.id} />
+                })
+              : 'No products'}
+          </div>
         </div>
       </div>
     )
