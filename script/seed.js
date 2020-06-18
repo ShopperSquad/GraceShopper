@@ -25,7 +25,7 @@ async function seed() {
         'https://images-na.ssl-images-amazon.com/images/I/91x1gsV0G3L._SL1500_.jpg',
       yearOfRelease: 1992,
       description: 'Super Mario Land 2 is a great game. Two thumbs up.',
-      price: 22.5,
+      price: 23,
       quantity: 14,
       console: 'Game Gear'
     }),
