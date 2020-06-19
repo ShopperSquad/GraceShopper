@@ -4,6 +4,7 @@
   --mainWhite: #f3f3f3;
   --mainDark: #232528;
   --mainYellow: #ffa400;
+  --mainBrightYelow: #ffff00;
 }
 
 body {
@@ -32,21 +33,18 @@ a {
   text-decoration: none;
 }
 
-label {
-  display: block;
-}
-/*
-nav a {
-  display: inline-block;
+/* form div {
   margin: 1em;
+  display: inline-block;
 } */
-
-form div {
-  margin: 1em;
-  display: inline-block;
-}
 
 .navbar a {
   justify-content: flex-start !important;
   margin: 1em;
+  color: var(--mainBrightYelow) !important;
+}
+
+.center {
+  text-align: center !important;
+  margin: auto;
 }
