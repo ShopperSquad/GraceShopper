@@ -1,8 +1,13 @@
 import React from 'react'
 
 function addToStorage(id, game) {
-  game = JSON.stringify(game)
-  localStorage.setItem(id, game)
+  let storageObj = localStorage.getItem('RSGC')
+
+  storageObj = storageObj ? JSON.parse(storageObj) : {}
+
+  storageObj[game.id] = game
+
+  localStorage.setItem('RSGC', JSON.stringify(storageObj))
 }
 
 export const AddToCart = props => {
