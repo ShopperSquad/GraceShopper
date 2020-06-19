@@ -4,17 +4,23 @@ import PropTypes from 'prop-types'
 import {fetchSingleProduct} from '../store/singleProduct'
 import {AddToCart} from './AddToCart'
 import {addGame} from '../store/guestCart'
+import {addToLoggedInCart} from '../store/user'
 
 class singleProduct extends Component {
   constructor() {
     super()
 
     this.addToStorage = this.addToStorage.bind(this)
+    this.addNewGame = this.addNewGame.bind(this)
   }
 
   componentDidMount() {
     const {getSingleProduct} = this.props
     getSingleProduct(this.props.match.params.id)
+  }
+
+  addNewGame(gameId) {
+    this.props.addGameToLoggedInCart(gameId)
   }
 
   addToStorage(game) {
@@ -35,6 +41,7 @@ class singleProduct extends Component {
           singleGame={arr}
           isLoggedIn={this.props.isLoggedIn}
           addToStorage={this.addToStorage}
+          addNewGame={this.addNewGame}
         />
       </div>
     )
@@ -51,7 +58,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     getSingleProduct: id => dispatch(fetchSingleProduct(id)),
-    addGameToStorage: gameObj => dispatch(addGame(gameObj))
+    addGameToStorage: gameObj => dispatch(addGame(gameObj)),
+    addGameToLoggedInCart: id => dispatch(addToLoggedInCart(id))
   }
 }
 

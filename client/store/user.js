@@ -8,6 +8,7 @@ const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM'
 const UPDATE_CART_QUANT = 'UPDATE_CART_QUANT'
+const ADD_TO_CART = 'ADD_TO_CART'
 
 /**
  * INITIAL STATE
@@ -21,6 +22,7 @@ const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const removeCartItem = updatedUser => ({type: REMOVE_CART_ITEM, updatedUser})
 const updatedCartQuant = user => ({type: UPDATE_CART_QUANT, user})
+const addedItem = user => ({type: ADD_TO_CART, user})
 
 /**
  * THUNK CREATORS
@@ -85,6 +87,17 @@ export const updateCartQuant = cartDetailsObj => {
   }
 }
 
+export const addToLoggedInCart = gameId => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put('/api/users/add-cart-item', {gameId})
+      dispatch(addedItem(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 /**
  * REDUCER
  */
@@ -97,6 +110,8 @@ export default function(state = defaultUser, action) {
     case REMOVE_CART_ITEM:
       return action.updatedUser
     case UPDATE_CART_QUANT:
+      return action.user
+    case ADD_TO_CART:
       return action.user
     default:
       return state

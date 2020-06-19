@@ -7,6 +7,8 @@ export const AddToCart = props => {
       Add To Cart
     </button>
   ) : (
-    <button type="button">LoggedIn Btn</button>
+    <button type="button" onClick={() => props.addNewGame(game.id)}>
+      Add To Cart
+    </button>
   )
 }
