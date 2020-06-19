@@ -17,6 +17,7 @@ class singleProduct extends Component {
         <h3>Year of Release: {arr.yearOfRelease}</h3>
         <h3>Quantity: {arr.quantity}</h3>
         <h3>Console: {arr.console}</h3>
+        <h3>Price: {arr.price}</h3>
       </div>
     )
   }
