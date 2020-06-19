@@ -1,6 +1,36 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {GuestCartProductCard} from './GuestCartProdCard'
+import {getLocalCart} from '../store/guestCart'
 
 export class GuestCart extends React.Component {
+  constructor() {
+    super()
+
+    this.handleChange = this.handleChange.bind(this)
+    this.removeItem = this.removeItem.bind(this)
+  }
+
+  componentDidMount() {
+    this.props.getGuestCart()
+  }
+
+  removeItem(id) {
+    let storedCart = localStorage.getItem('RSGC')
+    storedCart = JSON.parse(storedCart)
+
+    delete storedCart[id]
+    localStorage.setItem('RSGC', JSON.stringify(storedCart))
+  }
+
+  handleChange(event, id) {
+    let storedCart = localStorage.getItem('RSGC')
+    storedCart = JSON.parse(storedCart)
+
+    storedCart[id].cartQuant = parseInt(event.target.value, 10)
+    localStorage.setItem('RSGC', JSON.stringify(storedCart))
+  }
+
   render() {
     return (
       <div>
@@ -15,8 +45,34 @@ export class GuestCart extends React.Component {
               <th>Total</th>
             </tr>
           </thead>
+          <tbody>
+            {Object.values(this.props.guestCart).map(game => {
+              return (
+                <GuestCartProductCard
+                  key={game.id}
+                  game={game}
+                  handleChange={this.handleChange}
+                  removeItem={this.removeItem}
+                />
+              )
+            })}
+          </tbody>
         </table>
       </div>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    guestCart: state.guestCart
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getGuestCart: () => dispatch(getLocalCart())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GuestCart)

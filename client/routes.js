@@ -7,7 +7,7 @@ import {me} from './store'
 import allProducts from './components/allProducts'
 import myCart from './components/myCart'
 import singleProduct from './components/singleProduct'
-import {GuestCart} from './components/GuestCart'
+import GuestCart from './components/GuestCart'
 
 /**
  * COMPONENT
