@@ -2,6 +2,7 @@
 
 const db = require('../server/db')
 const {User, Order, Game, Cart} = require('../server/db/models')
+const seedGames = require('./seedGames')
 
 async function seed() {
   await db.sync({force: true})
@@ -18,117 +19,11 @@ async function seed() {
 
   console.log(`seeded ${users.length} users successfully`)
 
-  const games = await Promise.all([
-    Game.create({
-      name: 'Super Mario Land 2: 6 Golden Coins',
-      imageUrl:
-        'https://images-na.ssl-images-amazon.com/images/I/91x1gsV0G3L._SL1500_.jpg',
-      yearOfRelease: 1992,
-      description: 'Super Mario Land 2 is a great game. Two thumbs up.',
-      price: 2300,
-      quantity: 14,
-      console: 'Game Gear'
-    }),
-    Game.create({
-      name: 'Kirby',
-      imageUrl:
-        'https://vignette.wikia.nocookie.net/kirby/images/2/2d/SSU_Kirby_artwork.png/revision/latest?cb=20180612173614&path-prefix=en',
-      yearOfRelease: 1992,
-      description: 'Kirby is a great game. Two thumbs up.',
-      price: 5000,
-      quantity: 28,
-      console: 'Sega Genesis'
-    }),
-    Game.create({
-      name: 'Pokemon Yellow',
-      imageUrl:
-        'https://upload.wikimedia.org/wikipedia/pt/4/43/Pok%C3%A9mon_Yellow_cover.png',
-      yearOfRelease: 1998,
-      description: 'Pokemon Yellow is a great game. Two thumbs up.',
-      price: 500,
-      quantity: 101,
-      console: 'NES'
-    }),
-    Game.create({
-      name: "Gargoyle's Quest",
-      imageUrl:
-        'https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Gargoyles_Quest.jpg/220px-Gargoyles_Quest.jpg',
-      yearOfRelease: 1990,
-      description: "Gargoyle's Quest is a great game. Two thumbs up.",
-      price: 7500,
-      quantity: 5,
-      console: 'Game Boy'
-    }),
-    Game.create({
-      name: 'Dr. Mario',
-      imageUrl: 'https://pbs.twimg.com/media/EOeUdt4W4AEqh-t.png',
-      yearOfRelease: 1990,
-      description: 'Dr. Mario is a great game. Two thumbs up.',
-      price: 1300,
-      quantity: 30,
-      console: 'Game Gear'
-    }),
-    Game.create({
-      name: 'Final Fantasy Adventure',
-      imageUrl:
-        'https://upload.wikimedia.org/wikipedia/en/thumb/8/88/Final_Fantasy_Adventure_Front_Cover.jpg/220px-Final_Fantasy_Adventure_Front_Cover.jpg',
-      yearOfRelease: 1991,
-      description: 'Final Fantasy Adventure is a great game. Two thumbs up.',
-      price: 1800,
-      quantity: 31,
-      console: 'SNES'
-    }),
-    Game.create({
-      name: 'Yoshi',
-      imageUrl:
-        'https://52f4e29a8321344e30ae-0f55c9129972ac85d6b1f4e703468e6b.ssl.cf2.rackcdn.com/products/pictures/237642.jpg',
-      yearOfRelease: 1991,
-      description: 'Yoshi is a great game. Two thumbs up.',
-      price: 4700,
-      quantity: 8,
-      console: 'Sega Genesis'
-    }),
-    Game.create({
-      name: "Kirby's Dream Land",
-      imageUrl:
-        'https://upload.wikimedia.org/wikipedia/en/thumb/8/88/Final_Fantasy_Adventure_Front_Cover.jpg/220px-Final_Fantasy_Adventure_Front_Cover.jpg',
-      yearOfRelease: 1991,
-      description: "Kirby's Dream Land is a great game. Two thumbs up.",
-      price: 3000,
-      quantity: 16,
-      console: 'Game Gear'
-    }),
-    Game.create({
-      name: "The Legend of Zelda: Link's Awakening",
-      imageUrl:
-        'https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/a/ac/LA_Original_Soundtrack_Game_Boy_Cover.jpg/1200px-LA_Original_Soundtrack_Game_Boy_Cover.jpg',
-      yearOfRelease: 1993,
-      description: 'This is a great game. Two thumbs up.',
-      price: 10000,
-      quantity: 2,
-      console: 'NES'
-    }),
-    Game.create({
-      name: 'Donkey Kong Land',
-      imageUrl:
-        'https://upload.wikimedia.org/wikipedia/en/8/8c/Donkey_Kong_Land_Coverart.png',
-      yearOfRelease: 1995,
-      description: 'Donkey Kong Land is a great game. Two thumbs up.',
-      price: 1900,
-      quantity: 12,
-      console: 'SNES'
-    }),
-    Game.create({
-      name: 'Teenage Mutant Ninja Turtles III: Radical Rescue',
-      imageUrl:
-        'https://upload.wikimedia.org/wikipedia/en/f/fd/Teenage_Mutant_Ninja_Turtles_III_-_Radical_Rescue_Coverart.png',
-      yearOfRelease: 1993,
-      description: 'TMNT III is a great game. Two thumbs up.',
-      price: 2200,
-      quantity: 18,
-      console: 'Game Boy'
+  const games = await Promise.all(
+    seedGames.map(game => {
+      return Game.create(game)
     })
-  ])
+  )
 
   const orders = await Promise.all([
     Order.create({
