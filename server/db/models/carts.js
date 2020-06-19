@@ -17,6 +17,11 @@ const Cart = db.define('cart', {
 //   return userCart
 // }
 
+Cart.prototype.changeQuant = async function(val) {
+  this.quantity = val
+  await this.save()
+}
+
 Cart.prototype.addItem = async function() {
   this.quantity = this.quantity + 1
   await this.save()

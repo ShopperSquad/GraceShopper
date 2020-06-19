@@ -6,6 +6,8 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM'
+const UPDATE_CART_QUANT = 'UPDATE_CART_QUANT'
 
 /**
  * INITIAL STATE
@@ -17,6 +19,8 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const removeCartItem = updatedUser => ({type: REMOVE_CART_ITEM, updatedUser})
+const updatedCartQuant = user => ({type: UPDATE_CART_QUANT, user})
 
 /**
  * THUNK CREATORS
@@ -56,6 +60,31 @@ export const logout = () => async dispatch => {
   }
 }
 
+export const removeItemFromCart = gameId => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put('/api/users/remove-cart-item', {gameId})
+      dispatch(removeCartItem(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const updateCartQuant = cartDetailsObj => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(
+        '/api/users/change-cart-quant',
+        cartDetailsObj
+      )
+      dispatch(updatedCartQuant(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 /**
  * REDUCER
  */
@@ -65,6 +94,10 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case REMOVE_CART_ITEM:
+      return action.updatedUser
+    case UPDATE_CART_QUANT:
+      return action.user
     default:
       return state
   }
