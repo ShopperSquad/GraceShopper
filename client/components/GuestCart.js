@@ -1,7 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {GuestCartProductCard} from './GuestCartProdCard'
-import {getLocalCart, removeCartItem} from '../store/guestCart'
+import {
+  getLocalCart,
+  removeCartItem,
+  updateGuestItemQuant
+} from '../store/guestCart'
+import {GuestOrderSummaryCard} from './GuestOrderSummaryCard'
 
 export class GuestCart extends React.Component {
   constructor() {
@@ -20,11 +25,7 @@ export class GuestCart extends React.Component {
   }
 
   handleChange(event, id) {
-    let storedCart = localStorage.getItem('RSGC')
-    storedCart = JSON.parse(storedCart)
-
-    storedCart[id].cartQuant = parseInt(event.target.value, 10)
-    localStorage.setItem('RSGC', JSON.stringify(storedCart))
+    this.props.changeCartQuant(event.target.value, id)
   }
 
   render() {
@@ -54,6 +55,9 @@ export class GuestCart extends React.Component {
             })}
           </tbody>
         </table>
+        <GuestOrderSummaryCard
+          cartItems={Object.values(this.props.guestCart)}
+        />
       </div>
     )
   }
@@ -68,7 +72,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getGuestCart: () => dispatch(getLocalCart()),
-    removeItemFromCart: id => dispatch(removeCartItem(id))
+    removeItemFromCart: id => dispatch(removeCartItem(id)),
+    changeCartQuant: (val, id) => dispatch(updateGuestItemQuant(val, id))
   }
 }
 
