@@ -17,8 +17,11 @@ export const UserHome = props => {
       </div>
       {isAdmin ? (
         <div>
-          <h4> You are an Admin. </h4>
-          <p>Add a product to your online shop:</p>
+          <div>
+            <h4> You are an Admin. </h4>
+            <p>Add a product to your online shop:</p>
+          </div>
+          <div>Add Form</div>
         </div>
       ) : null}
     </div>

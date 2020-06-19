@@ -9,15 +9,31 @@ class singleProduct extends Component {
   }
   render() {
     const arr = this.props.singleProduct
+    const {isAdmin} = this.props
     return (
-      <div key={arr.id}>
-        <h2> {arr.name} </h2>
-        <img src={arr.imageUrl} width="300px" />
-        <h3>Description: {arr.description}</h3>
-        <h3>Year of Release: {arr.yearOfRelease}</h3>
-        <h3>Quantity: {arr.quantity}</h3>
-        <h3>Console: {arr.console}</h3>
-        <h3>Price: {arr.price}</h3>
+      <div>
+        <div key={arr.id}>
+          <h1> {arr.name} </h1>
+          <img src={arr.imageUrl} width="300px" />
+          <h3>
+            ${arr.price} &nbsp; Console: {arr.console}
+          </h3>
+          <p>{arr.description}</p>
+          <h5>
+            Year of Release: {arr.yearOfRelease} &nbsp; Quantity: {arr.quantity}
+          </h5>
+        </div>
+        <div>
+          {isAdmin ? (
+            <div>
+              <div>
+                <h2>You are an Admin.</h2>{' '}
+                <p>You can update this product here:</p>
+              </div>
+              <div>Update Form</div>
+            </div>
+          ) : null}
+        </div>
       </div>
     )
   }
@@ -25,7 +41,8 @@ class singleProduct extends Component {
 
 const mapState = state => {
   return {
-    singleProduct: state.singleProduct
+    singleProduct: state.singleProduct,
+    isAdmin: state.user.admin
   }
 }
 
