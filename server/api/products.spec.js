@@ -6,7 +6,7 @@ const db = require('../db')
 const app = require('../index')
 const Game = db.model('game')
 
-describe('Product routes', () => {
+xdescribe('Product routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
