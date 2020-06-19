@@ -21,7 +21,8 @@ const Game = db.define('game', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: '/joystick.png'
+    defaultValue:
+      'https://cdn.shopify.com/s/files/1/1810/1427/products/3vf15fukuos_900x.jpg?v=1582131666'
   },
   yearOfRelease: {
     type: Sequelize.INTEGER
@@ -33,7 +34,13 @@ const Game = db.define('game', {
     }
   },
   console: {
-    type: Sequelize.ENUM('Game Boy', 'SNES', 'NES', 'Sega Genesis', 'Game Gear')
+    type: Sequelize.ENUM(
+      'NES',
+      'Sega Genesis',
+      'Game Boy',
+      'SNES',
+      'Playstation'
+    )
   }
 })
 
