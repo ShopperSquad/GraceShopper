@@ -3,12 +3,24 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {fetchSingleProduct} from '../store/singleProduct'
 import {AddToCart} from './AddToCart'
+import {addGame} from '../store/guestCart'
 
 class singleProduct extends Component {
+  constructor() {
+    super()
+
+    this.addToStorage = this.addToStorage.bind(this)
+  }
+
   componentDidMount() {
     const {getSingleProduct} = this.props
     getSingleProduct(this.props.match.params.id)
   }
+
+  addToStorage(game) {
+    this.props.addGameToStorage(game)
+  }
+
   render() {
     const arr = this.props.singleProduct
     return (
@@ -19,7 +31,11 @@ class singleProduct extends Component {
         <h3>Year of Release: {arr.yearOfRelease}</h3>
         <h3>Quantity: {arr.quantity}</h3>
         <h3>Console: {arr.console}</h3>
-        <AddToCart singleGame={arr} isLoggedIn={this.props.isLoggedIn} />
+        <AddToCart
+          singleGame={arr}
+          isLoggedIn={this.props.isLoggedIn}
+          addToStorage={this.addToStorage}
+        />
       </div>
     )
   }
@@ -34,7 +50,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    getSingleProduct: id => dispatch(fetchSingleProduct(id))
+    getSingleProduct: id => dispatch(fetchSingleProduct(id)),
+    addGameToStorage: gameObj => dispatch(addGame(gameObj))
   }
 }
 

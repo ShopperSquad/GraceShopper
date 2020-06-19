@@ -16,11 +16,6 @@ export class GuestCart extends React.Component {
   }
 
   removeItem(id) {
-    // let storedCart = localStorage.getItem('RSGC')
-    // storedCart = JSON.parse(storedCart)
-
-    // delete storedCart[id]
-    // localStorage.setItem('RSGC', JSON.stringify(storedCart))
     this.props.removeItemFromCart(id)
   }
 

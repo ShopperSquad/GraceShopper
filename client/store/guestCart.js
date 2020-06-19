@@ -1,5 +1,6 @@
 const GET_LOCAL_CART = 'GET_LOCAL_CART'
 const REMOVE_GUEST_CART_ITEM = 'REMOVE_GUEST_CART_ITEM'
+const ADD_GAME_TO_GUEST_CART = 'ADD_GAME_TO_GUEST_CART'
 
 //action creator
 const gotCart = localCart => {
@@ -13,6 +14,13 @@ const removedItem = cart => {
   return {
     type: REMOVE_GUEST_CART_ITEM,
     cart
+  }
+}
+
+const addedGame = increasedCart => {
+  return {
+    type: ADD_GAME_TO_GUEST_CART,
+    increasedCart
   }
 }
 
@@ -32,8 +40,18 @@ export const removeCartItem = id => {
     cart = JSON.parse(cart)
 
     delete cart[id]
-    console.log(cart)
     dispatch(removedItem(cart))
+    localStorage.setItem('RSGC', JSON.stringify(cart))
+  }
+}
+
+export const addGame = game => {
+  return dispatch => {
+    let cart = localStorage.getItem('RSGC')
+    cart = JSON.parse(cart)
+
+    cart[game.id] = game
+    dispatch(addedGame(cart))
     localStorage.setItem('RSGC', JSON.stringify(cart))
   }
 }
@@ -45,6 +63,8 @@ export default function guestCartReducer(state = {}, action) {
       return action.localCart
     case REMOVE_GUEST_CART_ITEM:
       return action.cart
+    case ADD_GAME_TO_GUEST_CART:
+      return action.increasedCart
     default:
       return state
   }
