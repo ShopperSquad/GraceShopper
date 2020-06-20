@@ -15,14 +15,12 @@ export class AllProducts extends React.Component {
     return (
       <div className="container py-5">
         <Title />
-        <div className="row row-cols-2">
-          <div className="col">
-            {products && products.length
-              ? products.map(product => {
-                  return <Product product={product} key={product.id} />
-                })
-              : 'No products'}
-          </div>
+        <div className="row">
+          {products && products.length
+            ? products.map(product => {
+                return <Product product={product} key={product.id} />
+              })
+            : 'No products'}
         </div>
       </div>
     )

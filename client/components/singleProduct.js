@@ -30,20 +30,49 @@ class singleProduct extends Component {
   render() {
     const arr = this.props.singleProduct
     return (
-      <div key={arr.id}>
-        <h2> {arr.name} </h2>
-        <img src={arr.imageUrl} width="300px" />
-        <h3>Description: {arr.description}</h3>
-        <h3>Year of Release: {arr.yearOfRelease}</h3>
-        <h3>Quantity: {arr.quantity}</h3>
-        <h3>Console: {arr.console}</h3>
-        <h3>Price: {arr.price}</h3>
-        <AddToCart
-          singleGame={arr}
-          isLoggedIn={this.props.isLoggedIn}
-          addToStorage={this.addToStorage}
-          addNewGame={this.addNewGame}
-        />
+      <div key={arr.id} className="container py-2">
+        <div className="col-10 text-black my-5">
+          <h1>{arr.name}</h1>
+        </div>
+
+        <div className="col-10 col-md-6 my-3">
+          <img src={arr.imageUrl} className="img-fluid" alt="" />
+        </div>
+
+        <div className="col-10 col-md-6 my-3 text-capitalize">
+          <h4 className="text-title  mt-3 mb-2">
+            Console : <span className="text-uppercase">{arr.console}</span>
+          </h4>
+          <h4 className="text-black">
+            <strong>
+              {' '}
+              Price : <span>$</span> {arr.price}{' '}
+            </strong>
+          </h4>
+          <p className="text-capitalize font-weight-bold mt-3 mb-0">
+            Description :{' '}
+            <span className="text-black lead text-muted">
+              {arr.description}
+            </span>
+          </p>
+          <p className="text-capitalize font-weight-bold mt-3 mb-0">
+            Quantity :{' '}
+            <span className="text-black lead text-muted">{arr.quantity}</span>
+          </p>
+          <p className="text-capitalize font-weight-bold mt-3 mb-0">
+            Year of Release :{' '}
+            <span className="text-black lead text-mu">{arr.yearOfRelease}</span>
+          </p>
+        </div>
+
+        <div>
+          <AddToCart
+            singleGame={arr}
+            isLoggedIn={this.props.isLoggedIn}
+            addToStorage={this.addToStorage}
+            addNewGame={this.addNewGame}
+          />
+        </div>
       </div>
     )
   }
