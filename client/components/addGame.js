@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import gameForm from './gameForm'
+import GameForm from './gameForm'
+import {addSingleProduct} from '../store/singleProduct'
 
-export default class addGame extends Component {
+export default class AddGame extends Component {
   constructor() {
     super()
     this.state = {
@@ -28,7 +29,7 @@ export default class addGame extends Component {
     evt.preventDefault()
     try {
       const res = await axios.post('/products', this.state)
-      this.props.addGame(res.data)
+      this.props.addSingleProduct(res.data)
     } catch (error) {
       console.log(error)
     }
@@ -36,7 +37,7 @@ export default class addGame extends Component {
 
   render() {
     return (
-      <gameForm
+      <GameForm
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         {...this.state}

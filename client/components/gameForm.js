@@ -1,6 +1,7 @@
 import React from 'react'
+import {FormControl, FormGroup, Form} from 'react-bootstrap'
 
-const gameForm = props => {
+const GameForm = props => {
   const {
     handleSubmit,
     handleChange,
@@ -12,9 +13,15 @@ const gameForm = props => {
     quantity,
     console
   } = props
-
   return (
     <div className="game-form-box">
+      <Form>
+        <Form.Group controlId="formBasicTest">
+          <Form.Label>Test Field</Form.Label>
+          <Form.Control type="text" placeholder="Enter your response" />
+          <Form.Text className="text-muted">This is a test</Form.Text>
+        </Form.Group>
+      </Form>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name"> Name:</label>
@@ -78,4 +85,4 @@ const gameForm = props => {
   )
 }
 
-export default gameForm
+export default GameForm

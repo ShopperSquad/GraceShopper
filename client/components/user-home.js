@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import AddGame from './addGame'
 
 /**
  * COMPONENT
@@ -12,6 +13,7 @@ export const UserHome = props => {
     <div className="row">
       <div className="col-10 mx-auto my-2 text-center text-title">
         <h1 className="text-capitalize font-weight-bold">Welcome, {email}</h1>
+        <AddGame />
       </div>
     </div>
   )
