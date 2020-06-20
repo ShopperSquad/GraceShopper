@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {postProduct} from '../store/products'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email, isAdmin} = props
+  const {email, isAdmin, addProduct} = props
 
   return (
     <div>
@@ -21,7 +22,9 @@ export const UserHome = props => {
             <h4> You are an Admin. </h4>
             <p>Add a product to your online shop:</p>
           </div>
-          <div>Add Form</div>
+          {/*<div>
+            <Form addProduct={addProduct} />
+          </div>*/}
         </div>
       ) : null}
     </div>
@@ -38,7 +41,11 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatch = dispatch => ({
+  addProduct: () => dispatch(postProduct())
+})
+
+export default connect(mapState, mapDispatch)(UserHome)
 
 /**
  * PROP TYPES

@@ -35,7 +35,7 @@ export const putProduct = (product, id) => {
       const {data} = await axios.put(`/api/products/${id}`, product)
       dispatch(updateProduct(data))
     } catch (error) {
-      console.log('Error PUTting product!', error)
+      console.log('Error putting product!', error)
     }
   }
 }

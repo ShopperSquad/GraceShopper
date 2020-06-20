@@ -13,7 +13,9 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const game = await Game.findByPk(req.params.id)
-    res.json(game)
+    if (game) {
+      res.json(game)
+    } else res.sendStatus(404)
   } catch (error) {
     next(error)
   }
