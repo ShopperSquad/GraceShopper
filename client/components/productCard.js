@@ -57,8 +57,7 @@ const ProductWrapper = styled.div`
     color: var(--mainDark);
     font-size: 1.4rem;
     border-radius: 0.4rem 0 0 0;
-    transformtranslate(100%, 100%)
-  transition: all 1s ease-in-out;
+    transformtranslate(100%, 100%)transition: all 1s ease-in-out;
   }
   .img-container: hover .cart-btn {
     transform: transalte(0, 0);
