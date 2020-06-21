@@ -9,7 +9,7 @@ import {UserHome} from './user-home'
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
-xdescribe('UserHome', () => {
+describe('UserHome', () => {
   let userHome
 
   beforeEach(() => {
@@ -17,6 +17,6 @@ xdescribe('UserHome', () => {
   })
 
   it('renders the email in an h3', () => {
-    expect(userHome.find('h3').text()).to.be.equal('Welcome, cody@email.com')
+    expect(userHome.find('h1').text()).to.be.equal('Welcome, cody@email.com')
   })
 })

@@ -11,9 +11,23 @@ describe('Games model', () => {
     return db.sync({force: true})
   })
 
+  let game
+  beforeEach(() => {
+    game = Game.build({
+      name: 'Pokemon Green',
+      price: '2499',
+      yearOfRelease: '1996',
+      quantity: '7',
+      console: 'Game Boy',
+      description: 'Gotta catch them all!',
+      imageUrl:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRGSBpnwKM4owV2hImYzBppxxZrGIKl3svA80qzXM-A9XBTxJxm&usqp=CAU'
+    })
+  })
+
   describe('validations', () => {
     it('requires name and price', async () => {
-      const game = Game.build()
+      let game = Game.build()
       try {
         await game.validate()
         throw new Error('Promise should have rejected')
@@ -28,6 +42,20 @@ describe('Games model', () => {
           path: 'price'
         })
       }
+    })
+  })
+
+  describe('games model definition', () => {
+    it('includes `name`, `imageUrl`, `yearOfRelease`, `quantity` and `console` fields', async () => {
+      const savedGame = await game.save()
+      expect(savedGame.name).to.equal('Pokemon Green')
+      expect(savedGame.yearOfRelease).to.equal(1996)
+      expect(savedGame.quantity).to.equal(7)
+      expect(savedGame.console).to.equal('Game Boy')
+      expect(savedGame.description).to.equal('Gotta catch them all!')
+      expect(savedGame.imageUrl).to.equal(
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRGSBpnwKM4owV2hImYzBppxxZrGIKl3svA80qzXM-A9XBTxJxm&usqp=CAU'
+      )
     })
   })
 })

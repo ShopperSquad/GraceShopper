@@ -13,17 +13,14 @@ export class AllProducts extends React.Component {
   render() {
     const {products} = this.props
     return (
-      <div className="py-5">
-        <div className="container">
-          <Title />
-
-          <div className="row">
-            {products && products.length
-              ? products.map(product => {
-                  return <Product product={product} key={product.id} />
-                })
-              : 'No products'}
-          </div>
+      <div className="container py-5">
+        <Title />
+        <div className="row">
+          {products && products.length
+            ? products.map(product => {
+                return <Product product={product} key={product.id} />
+              })
+            : 'No products'}
         </div>
       </div>
     )

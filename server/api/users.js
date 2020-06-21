@@ -18,6 +18,22 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.put('/add-cart-item', async (req, res, next) => {
+  try {
+    const [user, game] = await Promise.all([
+      User.findByPk(req.user.id),
+      Game.findByPk(req.body.gameId)
+    ])
+    await user.addGame(game)
+    const updatedUser = await User.findByPk(req.user.id, {
+      include: [{model: Game}]
+    })
+    res.json(updatedUser)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.put('/remove-cart-item', async (req, res, next) => {
   try {
     const [user, game] = await Promise.all([
