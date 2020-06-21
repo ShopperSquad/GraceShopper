@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleProduct} from '../store/singleProduct'
+import {fetchSingleProduct, putProduct} from '../store/singleProduct'
+import {deleteProduct} from '../store/products'
 
 class singleProduct extends Component {
   componentDidMount() {
-    const {getSingleProduct} = this.props
+    const {getSingleProduct, updateProduct, removeProduct} = this.props
     getSingleProduct(this.props.match.params.id)
   }
   render() {
@@ -27,7 +28,10 @@ class singleProduct extends Component {
           {isAdmin ? (
             <div>
               <div>
-                <h2>You are an Admin.</h2>{' '}
+                <h2>You are an Admin.</h2>
+                <p>
+                  To remove this from store: &nbsp; <button>Remove</button>{' '}
+                </p>
                 <p>You can update this product here:</p>
               </div>
               <div>Update Form</div>
@@ -48,7 +52,9 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    getSingleProduct: id => dispatch(fetchSingleProduct(id))
+    getSingleProduct: id => dispatch(fetchSingleProduct(id)),
+    updateProduct: id => dispatch(putProduct(id)),
+    removeProduct: id => dispatch(deleteProduct(id))
   }
 }
 
