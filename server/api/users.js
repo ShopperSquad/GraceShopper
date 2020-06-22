@@ -2,6 +2,7 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 const {Game} = require('../db/models')
 const {Cart} = require('../db/models')
+const {check} = require('prettier')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -60,6 +61,21 @@ router.put('/change-cart-quant', async (req, res, next) => {
       include: [{model: Game}]
     })
     res.json(user)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/checkout', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.user.id, {
+      include: [{model: Game}]
+    })
+    await user.removeGames(user.games)
+    const checkedOutUser = await User.findByPk(req.user.id, {
+      include: [{model: Game}]
+    })
+    res.json(checkedOutUser)
   } catch (error) {
     next(error)
   }
