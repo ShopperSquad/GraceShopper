@@ -110,6 +110,19 @@ table {
   border: none;
 }
 
+.order-summary {
+  border: 1px solid black;
+}
+
 .order-sum-total {
   height: 100px;
+}
+
+.order-form {
+  border: 2px solid black;
+  border-radius: 8px;
+}
+
+#billing-header {
+  margin-top: 50px;
 }
