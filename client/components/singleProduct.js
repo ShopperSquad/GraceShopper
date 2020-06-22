@@ -29,13 +29,13 @@ class singleProduct extends Component {
 
   addToStorage(game) {
     this.props.addGameToStorage(game)
-    this.props.history.push('/my-cart')
+    this.props.history.push('/cart')
   }
 
   handleOnClick() {
-    const {removeProduct, singleProduct} = this.props
+    const {removeProduct} = this.props
 
-    removeProduct(singleProduct)
+    removeProduct(this.props.singleProduct)
     this.props.history.push('/')
   }
 
@@ -49,7 +49,7 @@ class singleProduct extends Component {
         </div>
 
         <div className="col-10 col-md-6 my-3">
-          <img src={arr.imageUrl} className="img-fluid" alt="" />
+          <img src={arr.imageUrl} className="img-fluid" alt={arr.name} />
         </div>
 
         <div className="col-10 col-md-6 my-3 text-capitalize">
@@ -99,7 +99,11 @@ class singleProduct extends Component {
               </p>
               <p>You can update this product here:</p>
             </div>
-            <div>Update Form</div>
+            {/*
+            <div>
+              <Form updateProduct={updateProduct} />
+            </div>
+           */}
           </div>
         ) : null}
       </div>
