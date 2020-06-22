@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {fetchSingleProduct} from '../store/singleProduct'
+import {fetchSingleProduct, putProduct} from '../store/singleProduct'
+import {deleteProduct} from '../store/products'
 import {AddToCart} from './AddToCart'
 import {addGame} from '../store/guestCart'
 import {addToLoggedInCart} from '../store/user'
@@ -12,6 +14,7 @@ class singleProduct extends Component {
 
     this.addToStorage = this.addToStorage.bind(this)
     this.addNewGame = this.addNewGame.bind(this)
+    this.handleOnClick = this.handleOnClick.bind(this)
   }
 
   componentDidMount() {
@@ -21,14 +24,24 @@ class singleProduct extends Component {
 
   addNewGame(gameId) {
     this.props.addGameToLoggedInCart(gameId)
+    this.props.history.push('/my-cart')
   }
 
   addToStorage(game) {
     this.props.addGameToStorage(game)
+    this.props.history.push('/cart')
+  }
+
+  handleOnClick() {
+    const {removeProduct} = this.props
+
+    removeProduct(this.props.singleProduct)
+    this.props.history.push('/')
   }
 
   render() {
     const arr = this.props.singleProduct
+    const {isAdmin, updateProduct} = this.props
     return (
       <div key={arr.id} className="container py-2">
         <div className="col-10 text-black my-5">
@@ -36,7 +49,7 @@ class singleProduct extends Component {
         </div>
 
         <div className="col-10 col-md-6 my-3">
-          <img src={arr.imageUrl} className="img-fluid" alt="" />
+          <img src={arr.imageUrl} className="img-fluid" alt={arr.name} />
         </div>
 
         <div className="col-10 col-md-6 my-3 text-capitalize">
@@ -73,6 +86,26 @@ class singleProduct extends Component {
             addNewGame={this.addNewGame}
           />
         </div>
+
+        {isAdmin ? (
+          <div>
+            <div>
+              <h2>You are an Admin.</h2>
+              <p>
+                To remove this from store: &nbsp;{' '}
+                <button type="button" onClick={this.handleOnClick}>
+                  Remove
+                </button>{' '}
+              </p>
+              <p>You can update this product here:</p>
+            </div>
+            {/*
+            <div>
+              <Form updateProduct={updateProduct} />
+            </div>
+           */}
+          </div>
+        ) : null}
       </div>
     )
   }
@@ -81,6 +114,7 @@ class singleProduct extends Component {
 const mapState = state => {
   return {
     singleProduct: state.singleProduct,
+    isAdmin: state.user.admin,
     isLoggedIn: !!state.user.id
   }
 }
@@ -88,6 +122,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     getSingleProduct: id => dispatch(fetchSingleProduct(id)),
+    updateProduct: id => dispatch(putProduct(id)),
+    removeProduct: id => dispatch(deleteProduct(id)),
     addGameToStorage: gameObj => dispatch(addGame(gameObj)),
     addGameToLoggedInCart: id => dispatch(addToLoggedInCart(id))
   }

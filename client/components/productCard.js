@@ -7,7 +7,11 @@ const Product = props => {
   return (
     <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
       <div className="card">
-        <img src={product.imageUrl} alt="game-pic" className="card-img-top" />
+        <img
+          src={product.imageUrl}
+          alt={product.name}
+          className="card-img-top"
+        />
         <Link to={`/products/${product.id}`}>{product.name}</Link>
         {/* card footer */}
         <div className="card-footer d-flex justify-content-between">
