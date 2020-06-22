@@ -24,29 +24,22 @@ export const fetchSingleProduct = id => async dispatch => {
   }
 }
 
-export const putProduct = (product, id) => {
-  for (let key in product) {
-    if (product[key] === '') {
-      delete product[key]
-    }
-  }
-  return async dispatch => {
-    try {
-      const {data} = await axios.put(`/api/products/${id}`, product)
-      dispatch(updateProduct(data))
-    } catch (error) {
-      console.log('Error putting product!', error)
-    }
+export const updateSingleProduct = (id, productUpdate) => async dispatch => {
+  try {
+    const {data} = await Axios.put(`/api/products/${id}`, productUpdate)
+    dispatch(updateProduct(data))
+  } catch (error) {
+    console.log(error)
   }
 }
-
+const initialState = {}
 //reducer
-export default function singleProductReducer(state = {}, action) {
+export default function singleProductReducer(state = initialState, action) {
   switch (action.type) {
     case SELECT_PRODUCT:
       return action.product
     case UPDATE_PRODUCT:
-      return action.product
+      return {...state, ...action.productUpdate}
     default:
       return state
   }

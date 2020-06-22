@@ -21,10 +21,29 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/add-inventory-game', async (req, res, next) => {
   try {
-    const game = await Game.create(req.body)
-    res.status(201).json(game)
+    const newGame = await Game.create(req.body)
+    res.json(newGame)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    const [numberOfAffectedRows, affectedRows] = await Game.update(req.body, {
+      where: {
+        id: req.params.id
+      },
+      returning: true,
+      plain: true
+    })
+      if (affectedRows) {
+      res.json(affectedRows)
+    } else {
+      res.sendStatus(404)
+    } 
   } catch (error) {
     next(error)
   }
@@ -43,19 +62,5 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
-  try {
-    const [numAffected, affected] = await Game.update(req.body, {
-      where: {id: req.params.id},
-      returning: true,
-      plain: true
-    })
-    if (affected) {
-      res.status(201).json(affected)
-    } else res.sendStatus(404)
-  } catch (error) {
-    next(error)
-  }
-})
 
 module.exports = router

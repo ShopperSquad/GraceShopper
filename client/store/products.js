@@ -25,6 +25,8 @@ export const removeProduct = product => ({
   product
 })
 
+export const addProduct = product => ({type: ADD_PRODUCT, product})
+
 /**
  * THUNK CREATORS
  */
@@ -39,16 +41,16 @@ export const fetchProducts = () => {
   }
 }
 
-export const postProduct = product => {
+export const addSingleProduct = product => {
   return async dispatch => {
     try {
-      const {data} = await axios.post('/api/products', product)
+      const {data} = await axios.post(
+        '/api/products/add-inventory-game',
+        product
+      )
       dispatch(addProduct(data))
     } catch (error) {
-      console.log('Error posting product!', error)
-    }
-  }
-}
+      console.log(error)
 
 export const deleteProduct = product => {
   return async dispatch => {

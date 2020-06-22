@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchProducts} from '../store/products'
+import {fetchProducts, addProduct, addSingleProduct} from '../store/products'
 import Product from './productCard'
 import Title from './title'
 

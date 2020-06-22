@@ -2,11 +2,12 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {fetchSingleProduct, putProduct} from '../store/singleProduct'
+import {fetchSingleProduct, updateSingleProduct} from '../store/singleProduct'
 import {deleteProduct} from '../store/products'
 import {AddToCart} from './AddToCart'
 import {addGame} from '../store/guestCart'
 import {addToLoggedInCart} from '../store/user'
+import UpdateGame from './updateGame'
 
 class singleProduct extends Component {
   constructor() {
@@ -40,9 +41,11 @@ class singleProduct extends Component {
   }
 
   render() {
+    console.log(this.props)
     const arr = this.props.singleProduct
     const {isAdmin, updateProduct} = this.props
     return (
+
       <div key={arr.id} className="container py-2">
         <div className="col-10 text-black my-5">
           <h1>{arr.name}</h1>
@@ -99,11 +102,14 @@ class singleProduct extends Component {
               </p>
               <p>You can update this product here:</p>
             </div>
-            {/*
-            <div>
-              <Form updateProduct={updateProduct} />
-            </div>
-           */}
+               <div className="game-form-box">
+                <UpdateGame
+                  updateGame={this.props.updateSingleProduct}
+                  id={this.props.match.params.id}
+                  products={arr.products}
+                  singleProduct={arr}
+                />
+              </div>
           </div>
         ) : null}
       </div>

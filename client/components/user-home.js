@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import AddGame from './addGame'
 import {Link} from 'react-router-dom'
-import {postProduct} from '../store/products'
 
 /**
  * COMPONENT
@@ -11,10 +11,11 @@ export const UserHome = props => {
   const {email, isAdmin, addProduct} = props
 
   return (
-    <div>
-      <div className="row">
-        <div className="col-10 mx-auto my-2 text-center text-title">
-          <h1 className="text-capitalize font-weight-bold">Welcome, {email}</h1>
+    <div className="row">
+      <div className="col-10 mx-auto my-2 text-center text-title">
+        <h1 className="text-capitalize font-weight-bold">Welcome, {email}</h1>
+        <div className="game-form-box">
+
         </div>
       </div>
       {isAdmin ? (
@@ -24,9 +25,10 @@ export const UserHome = props => {
             <Link to="/user-information">See All Customers</Link>
             <p>Add a product to your online shop:</p>
           </div>
-          {/*<div>
-            <Form addProduct={addProduct} />
-          </div>*/}
+          <div>
+            <h1>Add a game to the database?</h1>
+          <AddGame />
+          </div>
         </div>
       ) : null}
     </div>

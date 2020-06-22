@@ -21,7 +21,7 @@ const Product = props => {
           <p className="align-self-center mb-0">{product.title}</p>
           <h5 className="text-blue font-italic mb-0">
             <span className="mr-1">$</span>
-            {product.price}
+            {product.price / 100}
           </h5>
         </div>
       </div>
