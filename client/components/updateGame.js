@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import GameForm from './gameForm'
-//import {addSingleProduct} from '../store/singleProduct'
+import {updateSingleProduct} from '../store/singleProduct'
+import {connect} from 'react-redux'
 
-export default class UpdateGame extends Component {
-  constructor() {
-    super()
+export class UpdateGame extends Component {
+  constructor(props) {
+    super(props)
     this.state = {
       name: '',
       description: '',
@@ -19,20 +19,48 @@ export default class UpdateGame extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
+  componentDidMount() {
+    if (this.props.singleProduct) {
+      const gameUpdate = this.props.singleProduct
+      this.setState({
+        name: gameUpdate.name,
+        description: gameUpdate.description,
+        price: gameUpdate.price,
+        imageUrl: gameUpdate.imageUrl,
+        yearOfRelease: gameUpdate.yearOfRelease,
+        quantity: gameUpdate.quantity,
+        console: gameUpdate.console
+      })
+    }
+  }
+
   handleChange = evt => {
     this.setState({
       [evt.target.name]: evt.target.value
     })
   }
 
-  async handleSubmit(evt) {
+  handleSubmit(evt) {
     evt.preventDefault()
-    try {
-      const res = await axios.put('/products', this.state)
-      //this.props.addSingleProduct(res.data)
-    } catch (error) {
-      console.log(error)
+    const gameUpdate = {
+      name: this.state.name,
+      description: this.state.description,
+      price: this.state.price,
+      imageUrl: this.state.imageUrl,
+      yearOfRelease: this.state.yearOfRelease,
+      quantity: this.state.quantity,
+      console: this.state.console
     }
+    this.props.updateProduct(this.props.id, gameUpdate)
+    //   this.setState = {
+    //     name: '',
+    //     description: '',
+    //     price: '',
+    //     imageUrl: '',
+    //     yearOfRelease: '',
+    //     quantity: '',
+    //     console: ''
+    // }
   }
 
   render() {
@@ -42,9 +70,16 @@ export default class UpdateGame extends Component {
         <GameForm
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
-          {...this.state}
+          products={this.state}
         />
       </div>
     )
   }
 }
+
+const mapDispatch = dispatch => ({
+  updateProduct: (id, productUpdate) =>
+    dispatch(updateSingleProduct(id, productUpdate))
+})
+
+export default connect(null, mapDispatch)(UpdateGame)

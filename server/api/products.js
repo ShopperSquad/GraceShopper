@@ -28,3 +28,23 @@ router.post('/add-inventory-game', async (req, res, next) => {
     next(error)
   }
 })
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    //const updatedGame = await Game.update(req.body)
+    const [numberOfAffectedRows, affectedRows] = await Game.update(req.body, {
+      where: {
+        id: req.params.id
+      },
+      returning: true,
+      plain: true
+    })
+    if (affectedRows) {
+      res.json(affectedRows)
+    } else {
+      res.sendStatus(404)
+    }
+  } catch (error) {
+    next(error)
+  }
+})

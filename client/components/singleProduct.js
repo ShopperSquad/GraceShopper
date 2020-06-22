@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {fetchSingleProduct} from '../store/singleProduct'
+import {fetchSingleProduct, updateSingleProduct} from '../store/singleProduct'
 import {AddToCart} from './AddToCart'
 import {addGame} from '../store/guestCart'
 import {addToLoggedInCart} from '../store/user'
@@ -29,6 +29,7 @@ class singleProduct extends Component {
   }
 
   render() {
+    console.log(this.props)
     const arr = this.props.singleProduct
     return (
       <div>
@@ -79,7 +80,12 @@ class singleProduct extends Component {
           </div>
         </div>
         <div className="game-form-box">
-          <UpdateGame />
+          <UpdateGame
+            updateGame={this.props.updateSingleProduct}
+            id={this.props.match.params.id}
+            products={arr.products}
+            singleProduct={arr}
+          />
         </div>
       </div>
     )
