@@ -24,7 +24,11 @@ export const GuestOrderSummaryCard = props => {
         <tr>
           <td>
             <Link to="/checkout">
-              <button id="checkout-btn" type="button">
+              <button
+                id="checkout-btn"
+                type="button"
+                disabled={!props.cartItems.length}
+              >
                 Checkout
               </button>
             </Link>

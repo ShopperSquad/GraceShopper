@@ -3,15 +3,21 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {checkoutUser} from '../store/user'
+import {checkoutGuest} from '../store/guestCart'
 
 export class Checkout extends Component {
   constructor() {
     super()
     this.checkoutLoggedIn = this.checkoutLoggedIn.bind(this)
+    this.checkout = this.checkout.bind(this)
   }
 
   checkoutLoggedIn() {
     this.props.checkoutLoggedInUser()
+  }
+
+  checkout() {
+    this.props.checkoutGuestUser()
   }
 
   render() {
@@ -25,13 +31,13 @@ export class Checkout extends Component {
               type="button"
               id="submit-order-btn"
             >
-              Submit Order LoggedIn
+              Submit Order
             </button>
           </Link>
         ) : (
           <Link to="/confirmation">
-            <button type="button" id="submit-order-btn">
-              Submit Order Guest
+            <button onClick={this.checkout} type="button" id="submit-order-btn">
+              Submit Order
             </button>
           </Link>
         )}
@@ -48,7 +54,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    checkoutLoggedInUser: () => dispatch(checkoutUser())
+    checkoutLoggedInUser: () => dispatch(checkoutUser()),
+    checkoutGuestUser: () => dispatch(checkoutGuest())
   }
 }
 
