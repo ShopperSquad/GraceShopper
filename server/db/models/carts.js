@@ -8,15 +8,6 @@ const Cart = db.define('cart', {
   }
 })
 
-// Cart.getUserCart = async function(thisUserId) {
-//   const userCart = await this.findAll({
-//     where: {
-//       userId: thisUserId
-//     }
-//   })
-//   return userCart
-// }
-
 Cart.prototype.changeQuant = async function(val) {
   this.quantity = val
   await this.save()

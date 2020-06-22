@@ -1,8 +1,9 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Order, Game, Cart} = require('../server/db/models')
+const {User, Order, Game, Cart, PmtProfile} = require('../server/db/models')
 const seedGames = require('./seedGames')
+const seedProfiles = require('./seedProfiles')
 
 async function seed() {
   await db.sync({force: true})
@@ -22,6 +23,12 @@ async function seed() {
   const games = await Promise.all(
     seedGames.map(game => {
       return Game.create(game)
+    })
+  )
+
+  const pmtprofiles = await Promise.all(
+    seedProfiles.map(profile => {
+      return PmtProfile.create(profile)
     })
   )
 

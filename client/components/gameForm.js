@@ -1,5 +1,5 @@
 import React from 'react'
-import {FormControl, FormGroup, Form} from 'react-bootstrap'
+import {Form, FormCheck, Button} from 'react-bootstrap'
 
 const GameForm = props => {
   const {
@@ -14,74 +14,67 @@ const GameForm = props => {
     console
   } = props
   return (
-    <div className="game-form-box">
-      <Form>
-        <Form.Group controlId="formBasicTest">
-          <Form.Label>Test Field</Form.Label>
-          <Form.Control type="text" placeholder="Enter your response" />
-          <Form.Text className="text-muted">This is a test</Form.Text>
-        </Form.Group>
-      </Form>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name"> Name:</label>
-          <input onChange={handleChange} type="text" name="name" value={name} />
-        </div>
-        <label htmlFor="description">Description:</label>
-        <input
-          onChange={handleChange}
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId="formBasicTest">
+        <Form.Label>Name</Form.Label>
+        <Form.Control
           type="text"
+          placeholder="What's the name of the game?"
+          onChange={handleChange}
+          name="name"
+          value={name}
+        />
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Tell me about the game"
+          onChange={handleChange}
           name="description"
           value={description}
         />
-        <div>
-          <label htmlFor="priority">Price:</label>
-          <input
-            onChange={handleChange}
-            type="number"
-            name="price"
-            value={price}
-          />
-        </div>
-        <label htmlFor="description">Image URL:</label>
-        <input
+        <Form.Label>Price</Form.Label>
+        <Form.Control
+          type="number"
+          placeholder="Omg how much does this game cost?"
           onChange={handleChange}
+          name="price"
+          value={price}
+        />
+        <Form.Label>Image URL</Form.Label>
+        <Form.Control
           type="text"
+          placeholder="Does this game have a picture?"
+          onChange={handleChange}
           name="imageUrl"
           value={imageUrl}
         />
-        <div>
-          <label htmlFor="yearOfRelease">Year of Release:</label>
-          <input
-            onChange={handleChange}
-            type="number"
-            name="yearOfRelease"
-            value={yearOfRelease}
-          />
-        </div>
-        <div>
-          <label htmlFor="quantity">Quantity Available:</label>
-          <input
-            onChange={handleChange}
-            type="number"
-            name="quantity"
-            value={quantity}
-          />
-        </div>
-        <div>
-          <label htmlFor="console">Console:</label>
-          <input
-            onChange={handleChange}
-            type="text"
-            name="console"
-            value={console}
-          />
-        </div>
-        <div>
-          <button type="submit">Add Game</button>
-        </div>
-      </form>
-    </div>
+        <Form.Label>Year of Release</Form.Label>
+        <Form.Control
+          type="number"
+          placeholder="What year was it released?"
+          onChange={handleChange}
+          name="yearOfRelease"
+          value={yearOfRelease}
+        />
+        <Form.Label>Quantity Available</Form.Label>
+        <Form.Control
+          type="number"
+          placeholder="How many copies do we have?"
+          onChange={handleChange}
+          name="quantity"
+          value={quantity}
+        />
+        <Form.Label>Console</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Which console?"
+          onChange={handleChange}
+          name="console"
+          value={console}
+        />
+        <Button type="submit">Submit</Button>
+      </Form.Group>
+    </Form>
   )
 }
 

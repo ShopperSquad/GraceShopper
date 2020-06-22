@@ -6,7 +6,7 @@ function title() {
       <div className="col-10 mx-auto my-2 text-center text-title">
         <h1 className="text-capitalize font-weight-bold">
           {' '}
-          <strong>Our Games</strong>{' '}
+          <strong>All Games</strong>{' '}
         </h1>
       </div>
     </div>

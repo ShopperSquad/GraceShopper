@@ -3,7 +3,7 @@
   --lightBlue: #009ffd;
   --mainWhite: #f3f3f3;
   --mainDark: #232528;
-  --mainYellow: #ffa400;
+  --mainOrange: #ffa400;
   --mainBrightYelow: #ffff00;
 }
 
@@ -103,4 +103,12 @@ table {
 
 .order-sum-total {
   height: 100px;
+}
+
+.game-form-box {
+  border-style: solid;
+  border-color: black;
+  border-radius: 25px;
+  padding: 20px;
+  /* width: 600px */
 }
