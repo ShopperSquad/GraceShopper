@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {postProduct} from '../store/products'
 
 /**
@@ -19,7 +20,8 @@ export const UserHome = props => {
       {isAdmin ? (
         <div>
           <div>
-            <h4> You are an Admin. </h4>
+            <h3> You are an Admin. </h3>
+            <Link to="/user-information">See All Customers</Link>
             <p>Add a product to your online shop:</p>
           </div>
           {/*<div>
