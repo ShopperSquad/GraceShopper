@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 export const GuestOrderSummaryCard = props => {
   return (
@@ -22,9 +23,11 @@ export const GuestOrderSummaryCard = props => {
         </tr>
         <tr>
           <td>
-            <button id="checkout-btn" type="button">
-              Checkout
-            </button>
+            <Link to="/checkout">
+              <button id="checkout-btn" type="button">
+                Checkout
+              </button>
+            </Link>
           </td>
         </tr>
       </tbody>
