@@ -1,25 +1,24 @@
-import Axios from 'axios'
+import axios from 'axios'
 
-//action type
+//action types
 const SELECT_PRODUCT = 'SELECT_PRODUCT'
-export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 
-//action creator
-const selectedProduct = product => ({
+//action creators
+export const selectProduct = product => ({
   type: SELECT_PRODUCT,
   product
 })
-
-const updateProduct = productUpdate => ({
+export const updateProduct = product => ({
   type: UPDATE_PRODUCT,
-  productUpdate
+  product
 })
 
-//thunk
+//thunks
 export const fetchSingleProduct = id => async dispatch => {
   try {
-    const {data} = await Axios.get(`/api/products/${id}`)
-    dispatch(selectedProduct(data))
+    const {data} = await axios.get(`/api/products/${id}`)
+    dispatch(selectProduct(data))
   } catch (error) {
     console.log(error)
   }
