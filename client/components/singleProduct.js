@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {fetchSingleProduct, putProduct} from '../store/singleProduct'
 import {deleteProduct} from '../store/products'
@@ -13,10 +14,11 @@ class singleProduct extends Component {
 
     this.addToStorage = this.addToStorage.bind(this)
     this.addNewGame = this.addNewGame.bind(this)
+    this.handleOnClick = this.handleOnClick.bind(this)
   }
 
   componentDidMount() {
-    const {getSingleProduct, updateProduct, removeProduct} = this.props
+    const {getSingleProduct} = this.props
     getSingleProduct(this.props.match.params.id)
   }
 
@@ -28,9 +30,16 @@ class singleProduct extends Component {
     this.props.addGameToStorage(game)
   }
 
+  handleOnClick() {
+    const {removeProduct, singleProduct} = this.props
+
+    removeProduct(singleProduct)
+    this.props.history.push('/')
+  }
+
   render() {
     const arr = this.props.singleProduct
-    const {isAdmin} = this.props
+    const {isAdmin, updateProduct} = this.props
     return (
       <div key={arr.id} className="container py-2">
         <div className="col-10 text-black my-5">
@@ -81,7 +90,10 @@ class singleProduct extends Component {
             <div>
               <h2>You are an Admin.</h2>
               <p>
-                To remove this from store: &nbsp; <button>Remove</button>{' '}
+                To remove this from store: &nbsp;{' '}
+                <button type="button" onClick={this.handleOnClick}>
+                  Remove
+                </button>{' '}
               </p>
               <p>You can update this product here:</p>
             </div>
