@@ -19,3 +19,12 @@ router.get('/:id', async (req, res, next) => {
     next(error)
   }
 })
+
+router.post('/add-inventory-game', async (req, res, next) => {
+  try {
+    const newGame = await Game.create(req.body)
+    res.json(newGame)
+  } catch (error) {
+    next(error)
+  }
+})

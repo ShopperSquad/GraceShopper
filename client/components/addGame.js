@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import GameForm from './gameForm'
-import {addSingleProduct} from '../store/singleProduct'
+import {addSingleProduct} from '../store/products'
+import {connect} from 'react-redux'
 
-export default class AddGame extends Component {
-  constructor() {
-    super()
+export class AddGame extends Component {
+  constructor(props) {
+    super(props)
     this.state = {
       name: '',
       description: '',
@@ -19,19 +20,47 @@ export default class AddGame extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
+  componentDidMount() {
+    if (this.props.products) {
+      const game = this.props.products
+      this.setState({
+        name: game.name,
+        description: game.description,
+        price: game.price,
+        imageUrl: game.imageUrl,
+        yearOfRelease: game.yearOfRelease,
+        quantity: game.quantity,
+        console: game.console
+      })
+    }
+  }
+
   handleChange = evt => {
     this.setState({
       [evt.target.name]: evt.target.value
     })
   }
 
-  async handleSubmit(evt) {
+  handleSubmit(evt) {
     evt.preventDefault()
-    try {
-      const res = await axios.post('/products', this.state)
-      this.props.addSingleProduct(res.data)
-    } catch (error) {
-      console.log(error)
+    const game = {
+      name: this.state.name,
+      description: this.state.description,
+      price: this.state.price,
+      imageUrl: this.state.imageUrl,
+      yearOfRelease: this.state.yearOfRelease,
+      quantity: this.state.quantity,
+      console: this.state.console
+    }
+    this.props.addProduct(game)
+    this.setState = {
+      name: '',
+      description: '',
+      price: '',
+      imageUrl: '',
+      yearOfRelease: '',
+      quantity: '',
+      console: ''
     }
   }
 
@@ -40,8 +69,14 @@ export default class AddGame extends Component {
       <GameForm
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
-        {...this.state}
+        products={this.state}
       />
     )
   }
 }
+
+const mapDispatch = dispatch => ({
+  addProduct: product => dispatch(addSingleProduct(product))
+})
+
+export default connect(null, mapDispatch)(AddGame)
