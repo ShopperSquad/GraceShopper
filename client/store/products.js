@@ -25,8 +25,6 @@ export const removeProduct = product => ({
   product
 })
 
-export const addProduct = product => ({type: ADD_PRODUCT, product})
-
 /**
  * THUNK CREATORS
  */
@@ -51,6 +49,9 @@ export const addSingleProduct = product => {
       dispatch(addProduct(data))
     } catch (error) {
       console.log(error)
+    }
+  }
+}
 
 export const deleteProduct = product => {
   return async dispatch => {
