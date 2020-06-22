@@ -52,15 +52,6 @@ export class UpdateGame extends Component {
       console: this.state.console
     }
     this.props.updateProduct(this.props.id, gameUpdate)
-    //   this.setState = {
-    //     name: '',
-    //     description: '',
-    //     price: '',
-    //     imageUrl: '',
-    //     yearOfRelease: '',
-    //     quantity: '',
-    //     console: ''
-    // }
   }
 
   render() {

@@ -43,9 +43,8 @@ class singleProduct extends Component {
   render() {
     console.log(this.props)
     const arr = this.props.singleProduct
-    const {isAdmin, updateProduct} = this.props
+    const {isAdmin} = this.props
     return (
-
       <div key={arr.id} className="container py-2">
         <div className="col-10 text-black my-5">
           <h1>{arr.name}</h1>
@@ -102,14 +101,14 @@ class singleProduct extends Component {
               </p>
               <p>You can update this product here:</p>
             </div>
-               <div className="game-form-box">
-                <UpdateGame
-                  updateGame={this.props.updateSingleProduct}
-                  id={this.props.match.params.id}
-                  products={arr.products}
-                  singleProduct={arr}
-                />
-              </div>
+            <div className="game-form-box">
+              <UpdateGame
+                updateGame={this.props.updateSingleProduct}
+                id={this.props.match.params.id}
+                products={arr.products}
+                singleProduct={arr}
+              />
+            </div>
           </div>
         ) : null}
       </div>
@@ -128,7 +127,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     getSingleProduct: id => dispatch(fetchSingleProduct(id)),
-    updateProduct: id => dispatch(putProduct(id)),
+    updateProduct: id => dispatch(updateSingleProduct(id)),
     removeProduct: id => dispatch(deleteProduct(id)),
     addGameToStorage: gameObj => dispatch(addGame(gameObj)),
     addGameToLoggedInCart: id => dispatch(addToLoggedInCart(id))
