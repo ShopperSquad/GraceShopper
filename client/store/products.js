@@ -10,7 +10,10 @@ export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 /**
  * ACTION CREATORS
  */
-export const setProducts = products => ({type: SET_PRODUCTS, products})
+export const setProducts = products => ({
+  type: SET_PRODUCTS,
+  products
+})
 
 export const addProduct = product => ({
   type: ADD_PRODUCT,
