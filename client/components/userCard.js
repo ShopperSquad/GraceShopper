@@ -4,7 +4,7 @@ const User = props => {
   const {user} = props
   return (
     <tr>
-      <td>{user.id}</td>
+      <td>{user.id}&nbsp;&nbsp;</td>
       <td>{user.email}</td>
       <td>{user.admin ? 'Yes' : 'No'}</td>
     </tr>

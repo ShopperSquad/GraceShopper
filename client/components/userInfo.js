@@ -21,8 +21,8 @@ export class UserInfo extends React.Component {
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Email</th>
-                  <th>Admin?</th>
+                  <th>&nbsp;Email</th>
+                  <th>&nbsp;Admin?</th>
                 </tr>
               </thead>
               <tbody>
