@@ -24,10 +24,12 @@ class singleProduct extends Component {
 
   addNewGame(gameId) {
     this.props.addGameToLoggedInCart(gameId)
+    this.props.history.push('/my-cart')
   }
 
   addToStorage(game) {
     this.props.addGameToStorage(game)
+    this.props.history.push('/my-cart')
   }
 
   handleOnClick() {
