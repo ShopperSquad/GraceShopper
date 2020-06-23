@@ -3,7 +3,7 @@
   --lightBlue: #009ffd;
   --mainWhite: #f3f3f3;
   --mainDark: #232528;
-  --mainYellow: #ffa400;
+  --mainOrange: #ffa400;
   --mainBrightYelow: #ffff00;
 }
 
@@ -14,13 +14,11 @@ body {
   color: var(--mainDark) !important;
 }
 
-/* for titles  */
 .text-title {
   font-family: 'VT323', monospace;
   letter-spacing: 0.1rem;
-  /* text-transform: uppercase; */
 }
-/* for descriptions */
+
 .text-blue {
   color: var(--mainBlue);
 }
@@ -32,11 +30,6 @@ body {
 a {
   text-decoration: none;
 }
-
-/* form div {
-  margin: 1em;
-  display: inline-block;
-} */
 
 .navbar a {
   justify-content: flex-start !important;
@@ -123,4 +116,18 @@ table {
   margin-top: 20px;
   margin-bottom: 20px;
   margin-left: 15px;
+}
+
+.game-form-box {
+  border-style: solid;
+  border-color: black;
+  border-radius: 25px;
+  padding: 20px;
+  /* width: 600px */
+}
+
+.imageSize {
+  width: 500px;
+  height: 300px;
+  object-fit: scale-down;
 }

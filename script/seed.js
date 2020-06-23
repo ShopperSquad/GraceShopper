@@ -1,15 +1,16 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Order, Game, Cart} = require('../server/db/models')
+const {User, Order, Game, Cart, PmtProfile} = require('../server/db/models')
 const seedGames = require('./seedGames')
+const seedProfiles = require('./seedProfiles')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
+    User.create({email: 'cody@email.com', password: '123', admin: 'true'}),
     User.create({email: 'murphy@email.com', password: '123'}),
     User.create({email: 'jackie@retrospective.com', password: '123'}),
     User.create({email: 'raghdaa@retrospective.com', password: '123'}),
@@ -22,6 +23,12 @@ async function seed() {
   const games = await Promise.all(
     seedGames.map(game => {
       return Game.create(game)
+    })
+  )
+
+  const pmtprofiles = await Promise.all(
+    seedProfiles.map(profile => {
+      return PmtProfile.create(profile)
     })
   )
 
