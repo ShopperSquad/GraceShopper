@@ -39,11 +39,11 @@ router.put('/:id', async (req, res, next) => {
       returning: true,
       plain: true
     })
-      if (affectedRows) {
+    if (affectedRows) {
       res.json(affectedRows)
     } else {
       res.sendStatus(404)
-    } 
+    }
   } catch (error) {
     next(error)
   }
@@ -61,6 +61,5 @@ router.delete('/:id', async (req, res, next) => {
     next(error)
   }
 })
-
 
 module.exports = router

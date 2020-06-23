@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {fetchSingleProduct, updateSingleProduct} from '../store/singleProduct'
+import {fetchSingleProduct} from '../store/singleProduct'
 import {deleteProduct} from '../store/products'
 import {AddToCart} from './AddToCart'
 import {addGame} from '../store/guestCart'
@@ -35,13 +34,11 @@ class singleProduct extends Component {
 
   handleOnClick() {
     const {removeProduct} = this.props
-
     removeProduct(this.props.singleProduct)
     this.props.history.push('/')
   }
 
   render() {
-    console.log(this.props)
     const arr = this.props.singleProduct
     const {isAdmin} = this.props
     return (
@@ -55,29 +52,28 @@ class singleProduct extends Component {
         </div>
 
         <div className="col-10 col-md-6 my-3 text-capitalize">
-          <h4 className="text-title  mt-3 mb-2">
-            Console : <span className="text-uppercase">{arr.console}</span>
-          </h4>
           <h4 className="text-black">
             <strong>
               {' '}
-              Price : <span>$</span> {arr.price}{' '}
+              Price : <span>$</span> {arr.price / 100}{' '}
             </strong>
           </h4>
           <p className="text-capitalize font-weight-bold mt-3 mb-0">
-            Description :{' '}
             <span className="text-black lead text-muted">
               {arr.description}
             </span>
           </p>
-          <p className="text-capitalize font-weight-bold mt-3 mb-0">
+          <h5 className="text-title  mt-3 mb-2">
+            Console : <span className="text-uppercase">{arr.console}</span>
+          </h5>
+          <h6 className="text-capitalize font-weight-bold mt-3 mb-0">
             Quantity :{' '}
             <span className="text-black lead text-muted">{arr.quantity}</span>
-          </p>
-          <p className="text-capitalize font-weight-bold mt-3 mb-0">
+          </h6>
+          <h6 className="text-capitalize font-weight-bold mt-3 mb-0">
             Year of Release :{' '}
             <span className="text-black lead text-mu">{arr.yearOfRelease}</span>
-          </p>
+          </h6>
         </div>
 
         <div>
@@ -103,7 +99,6 @@ class singleProduct extends Component {
             </div>
             <div className="game-form-box">
               <UpdateGame
-                updateGame={this.props.updateSingleProduct}
                 id={this.props.match.params.id}
                 products={arr.products}
                 singleProduct={arr}
@@ -127,7 +122,6 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     getSingleProduct: id => dispatch(fetchSingleProduct(id)),
-    updateProduct: id => dispatch(updateSingleProduct(id)),
     removeProduct: id => dispatch(deleteProduct(id)),
     addGameToStorage: gameObj => dispatch(addGame(gameObj)),
     addGameToLoggedInCart: id => dispatch(addToLoggedInCart(id))

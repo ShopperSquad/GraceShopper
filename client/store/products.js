@@ -42,13 +42,18 @@ export const fetchProducts = () => {
 export const addSingleProduct = product => {
   return async dispatch => {
     try {
+      for (let key in product) {
+        if (product[key] === '') {
+          delete product[key]
+        }
+      }
       const {data} = await axios.post(
         '/api/products/add-inventory-game',
         product
       )
       dispatch(addProduct(data))
     } catch (error) {
-      console.log(error)
+      console.log('Error posting product!', error)
     }
   }
 }
