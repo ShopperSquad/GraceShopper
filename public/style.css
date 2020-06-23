@@ -112,3 +112,17 @@ table {
   padding: 20px;
   /* width: 600px */
 }
+
+.single-game-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.single-game-form-comp {
+  width: 500px;
+  height: 500px;
+  margin: auto;
+}
