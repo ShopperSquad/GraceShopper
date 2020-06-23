@@ -3,17 +3,13 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {checkoutUser} from '../store/user'
 import {checkoutGuest} from '../store/guestCart'
-import {CheckoutForm} from './checkoutForm'
+import CheckOutForm from './ChekoutFormAllGuests'
 
 export class Checkout extends Component {
   constructor() {
     super()
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-
-  // checkoutLoggedIn() {
-  //   this.props.checkoutLoggedInUser()
-  // }
 
   handleSubmit(evt) {
     evt.preventDefault()
@@ -27,7 +23,7 @@ export class Checkout extends Component {
 
   render() {
     return (
-      <CheckoutForm
+      <CheckOutForm
         isLoggedIn={this.props.isLoggedIn}
         handleSubmit={this.handleSubmit}
         checkoutLoggedIn={this.checkoutLoggedIn}
