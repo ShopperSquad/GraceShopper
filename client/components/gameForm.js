@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form, FormCheck, Button} from 'react-bootstrap'
+import {Form, Button} from 'react-bootstrap'
 
 const GameForm = props => {
   const {
