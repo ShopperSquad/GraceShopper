@@ -8,23 +8,28 @@ import {CheckoutForm} from './checkoutForm'
 export class Checkout extends Component {
   constructor() {
     super()
-    this.checkoutLoggedIn = this.checkoutLoggedIn.bind(this)
-    this.checkout = this.checkout.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  checkoutLoggedIn() {
-    this.props.checkoutLoggedInUser()
-  }
+  // checkoutLoggedIn() {
+  //   this.props.checkoutLoggedInUser()
+  // }
 
-  checkout() {
-    this.props.checkoutGuestUser()
+  handleSubmit(evt) {
+    evt.preventDefault()
+    if (this.props.isLoggedIn === true) {
+      this.props.checkoutLoggedInUser()
+    } else {
+      this.props.checkoutGuestUser()
+    }
+    this.props.history.push('/confirmation')
   }
 
   render() {
     return (
       <CheckoutForm
         isLoggedIn={this.props.isLoggedIn}
-        checkout={this.checkout}
+        handleSubmit={this.handleSubmit}
         checkoutLoggedIn={this.checkoutLoggedIn}
       />
     )
