@@ -1,8 +1,9 @@
 import axios from 'axios'
 
 //action types
-const SELECT_PRODUCT = 'SELECT_PRODUCT'
-const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+export const SELECT_PRODUCT = 'SELECT_PRODUCT'
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+export const RESET_PRODUCT = 'RESET_PRODUCT'
 
 //action creators
 export const selectProduct = product => ({
@@ -12,6 +13,10 @@ export const selectProduct = product => ({
 export const updateProduct = product => ({
   type: UPDATE_PRODUCT,
   product
+})
+
+export const resetProduct = () => ({
+  type: RESET_PRODUCT
 })
 
 //thunks
@@ -32,6 +37,7 @@ export const updateSingleProduct = (id, productUpdate) => async dispatch => {
     console.log(error)
   }
 }
+
 const initialState = {}
 //reducer
 export default function singleProductReducer(state = initialState, action) {
@@ -40,6 +46,8 @@ export default function singleProductReducer(state = initialState, action) {
       return action.product
     case UPDATE_PRODUCT:
       return {...state, ...action.product}
+    case RESET_PRODUCT:
+      return initialState
     default:
       return state
   }
