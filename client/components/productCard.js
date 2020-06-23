@@ -33,10 +33,6 @@ const Product = props => {
               <i className="fas fa-cart-plus" />
             </button>
           )}
-          {/* <button className="cart-btn text-center" type="button">
-            <i className="fas fa-cart-plus" />
-          </button> */}
-          <p className="align-self-center mb-0">{product.title}</p>
           <h5 className="text-blue font-italic mb-0">
             <span className="mr-1">$</span>
             {product.price / 100}
