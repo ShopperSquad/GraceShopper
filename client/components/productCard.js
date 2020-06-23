@@ -10,15 +10,15 @@ const Product = props => {
         <img
           src={product.imageUrl}
           alt={product.name}
-          className="card-img-top"
+          className="card-img-top imageSize"
         />
-        <Link to={`/products/${product.id}`}>{product.name}</Link>
-        {/* card footer */}
+        <Link to={`/products/${product.id}`}>
+          <p>{product.name}</p>
+        </Link>
         <div className="card-footer d-flex justify-content-between">
           <button className="cart-btn text-center" type="button">
             <i className="fas fa-cart-plus" />
           </button>
-          <p className="align-self-center mb-0">{product.title}</p>
           <h5 className="text-blue font-italic mb-0">
             <span className="mr-1">$</span>
             {product.price / 100}
