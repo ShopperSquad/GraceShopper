@@ -14,13 +14,11 @@ body {
   color: var(--mainDark) !important;
 }
 
-/* for titles  */
 .text-title {
   font-family: 'VT323', monospace;
   letter-spacing: 0.1rem;
-  /* text-transform: uppercase; */
 }
-/* for descriptions */
+
 .text-blue {
   color: var(--mainBlue);
 }
@@ -32,11 +30,6 @@ body {
 a {
   text-decoration: none;
 }
-
-/* form div {
-  margin: 1em;
-  display: inline-block;
-} */
 
 .navbar a {
   justify-content: flex-start !important;
@@ -111,4 +104,10 @@ table {
   border-radius: 25px;
   padding: 20px;
   /* width: 600px */
+}
+
+.imageSize {
+  width: 500px;
+  height: 300px;
+  object-fit: scale-down;
 }
