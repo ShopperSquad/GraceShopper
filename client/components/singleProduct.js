@@ -41,7 +41,6 @@ class singleProduct extends Component {
   }
 
   render() {
-    console.log(this.props)
     const arr = this.props.singleProduct
     const {isAdmin} = this.props
     return (

@@ -15,9 +15,22 @@ const Product = props => {
         <Link to={`/products/${product.id}`}>{product.name}</Link>
         {/* card footer */}
         <div className="card-footer d-flex justify-content-between">
-          <button className="cart-btn text-center" type="button">
+          {props.isLoggedIn ? (
+            <button
+              className="cart-btn text-center"
+              type="button"
+              onClick={() => props.addNewGame(product.id)}
+            >
+              <i className="fas fa-cart-plus" />
+            </button>
+          ) : (
+            <button className="cart-btn text-center" type="button">
+              <i className="fas fa-cart-plus" />
+            </button>
+          )}
+          {/* <button className="cart-btn text-center" type="button">
             <i className="fas fa-cart-plus" />
-          </button>
+          </button> */}
           <p className="align-self-center mb-0">{product.title}</p>
           <h5 className="text-blue font-italic mb-0">
             <span className="mr-1">$</span>
