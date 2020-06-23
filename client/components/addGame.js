@@ -1,67 +1,39 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import GameForm from './gameForm'
 import {addSingleProduct} from '../store/products'
 import {connect} from 'react-redux'
 
-export class AddGame extends Component {
+const initialState = {
+  name: '',
+  description: '',
+  price: 0,
+  imageUrl: '',
+  yearOfRelease: '',
+  quantity: 1,
+  console: ''
+}
+
+class AddGame extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      name: '',
-      description: '',
-      price: '',
-      imageUrl: '',
-      yearOfRelease: '',
-      quantity: '',
-      console: ''
-    }
+    this.state = initialState
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
-  componentDidMount() {
-    if (this.props.products) {
-      const game = this.props.products
-      this.setState({
-        name: game.name,
-        description: game.description,
-        price: game.price,
-        imageUrl: game.imageUrl,
-        yearOfRelease: game.yearOfRelease,
-        quantity: game.quantity,
-        console: game.console
-      })
-    }
-  }
-
   handleChange = evt => {
     this.setState({
-      [evt.target.name]: evt.target.value
+      [evt.target.name]:
+        evt.target.type === 'number'
+          ? parseInt(evt.target.value, 10)
+          : evt.target.value
     })
   }
 
   handleSubmit(evt) {
     evt.preventDefault()
-    const game = {
-      name: this.state.name,
-      description: this.state.description,
-      price: this.state.price,
-      imageUrl: this.state.imageUrl,
-      yearOfRelease: this.state.yearOfRelease,
-      quantity: this.state.quantity,
-      console: this.state.console
-    }
-    this.props.addProduct(game)
-    this.setState = {
-      name: '',
-      description: '',
-      price: '',
-      imageUrl: '',
-      yearOfRelease: '',
-      quantity: '',
-      console: ''
-    }
+    this.props.addGame(this.state)
+    this.setState(initialState)
   }
 
   render() {
@@ -76,7 +48,7 @@ export class AddGame extends Component {
 }
 
 const mapDispatch = dispatch => ({
-  addProduct: product => dispatch(addSingleProduct(product))
+  addGame: game => dispatch(addSingleProduct(game))
 })
 
 export default connect(null, mapDispatch)(AddGame)

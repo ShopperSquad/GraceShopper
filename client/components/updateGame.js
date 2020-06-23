@@ -3,18 +3,20 @@ import GameForm from './gameForm'
 import {updateSingleProduct} from '../store/singleProduct'
 import {connect} from 'react-redux'
 
+const initialState = {
+  name: '',
+  description: '',
+  price: 0,
+  imageUrl: '',
+  yearOfRelease: '',
+  quantity: 1,
+  console: ''
+}
+
 export class UpdateGame extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      name: '',
-      description: '',
-      price: '',
-      imageUrl: '',
-      yearOfRelease: '',
-      quantity: '',
-      console: ''
-    }
+    this.state = initialState
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
@@ -42,16 +44,8 @@ export class UpdateGame extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    const gameUpdate = {
-      name: this.state.name,
-      description: this.state.description,
-      price: this.state.price,
-      imageUrl: this.state.imageUrl,
-      yearOfRelease: this.state.yearOfRelease,
-      quantity: this.state.quantity,
-      console: this.state.console
-    }
-    this.props.updateProduct(this.props.id, gameUpdate)
+    this.props.updateProduct(this.props.id, this.state)
+    this.setState(initialState)
   }
 
   render() {

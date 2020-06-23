@@ -39,7 +39,7 @@ export default function singleProductReducer(state = initialState, action) {
     case SELECT_PRODUCT:
       return action.product
     case UPDATE_PRODUCT:
-      return {...state, ...action.productUpdate}
+      return {...state, ...action.product}
     default:
       return state
   }
