@@ -1,10 +1,10 @@
 import React from 'react'
 import AllProducts from './allProducts'
 
-const Main = () => {
+const Main = props => {
   return (
     <div className="container">
-      <AllProducts />
+      <AllProducts history={props.history} />
     </div>
   )
 }

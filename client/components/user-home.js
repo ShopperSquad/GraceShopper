@@ -19,11 +19,16 @@ export const UserHome = props => {
         <div className="single-game-form">
           <div className="single-game-form-comp">
             <h3> You are an Admin. </h3>
+            <Link to="/my-cart">Test Cart Functionality</Link>
+            <br />
             <Link to="/user-information">See All Customers</Link>
           </div>
-          <div className="single-game-form-comp">
+          <div>
+            <br />
+          </div>
+          <div>
+            <h3>Add a game to your shop?</h3>
             <div className="game-form-box">
-              <h3>Add a game to your shop?</h3>
               <AddGame />
             </div>
           </div>

@@ -2,18 +2,22 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 const {Game} = require('../db/models')
 const {Cart} = require('../db/models')
+const {check} = require('prettier')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      // explicitly select only the id and email fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'email', 'admin'],
-      order: ['id']
-    })
-    res.json(users)
+    if (!req.user) res.sendStatus(401)
+    if (req.user.admin) {
+      const users = await User.findAll({
+        // explicitly select only the id and email fields - even though
+        // users' passwords are encrypted, it won't help if we just
+        // send everything to anyone who asks!
+        attributes: ['id', 'email', 'admin'],
+        order: ['id']
+      })
+      res.json(users)
+    } else res.sendStatus(401)
   } catch (err) {
     next(err)
   }
@@ -61,6 +65,21 @@ router.put('/change-cart-quant', async (req, res, next) => {
       include: [{model: Game}]
     })
     res.json(user)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/checkout', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.user.id, {
+      include: [{model: Game}]
+    })
+    await user.removeGames(user.games)
+    const checkedOutUser = await User.findByPk(req.user.id, {
+      include: [{model: Game}]
+    })
+    res.json(checkedOutUser)
   } catch (error) {
     next(error)
   }

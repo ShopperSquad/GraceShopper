@@ -14,13 +14,11 @@ body {
   color: var(--mainDark) !important;
 }
 
-/* for titles  */
 .text-title {
   font-family: 'VT323', monospace;
   letter-spacing: 0.1rem;
-  /* text-transform: uppercase; */
 }
-/* for descriptions */
+
 .text-blue {
   color: var(--mainBlue);
 }
@@ -32,11 +30,6 @@ body {
 a {
   text-decoration: none;
 }
-
-/* form div {
-  margin: 1em;
-  display: inline-block;
-} */
 
 .navbar a {
   justify-content: flex-start !important;
@@ -97,12 +90,32 @@ table {
   border: none;
 }
 
+.submit-order-btn {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 #order-summary td {
   border: none;
 }
 
+.order-summary {
+  border: 1px solid black;
+}
+
 .order-sum-total {
   height: 100px;
+}
+
+.order-form {
+  border: 2px solid black;
+  border-radius: 8px;
+}
+
+.billing-shipping-header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 15px;
 }
 
 .game-form-box {
@@ -125,4 +138,10 @@ table {
   width: 500px;
   height: 500px;
   margin: auto;
+}
+
+.imageSize {
+  width: 500px;
+  height: 300px;
+  object-fit: scale-down;
 }

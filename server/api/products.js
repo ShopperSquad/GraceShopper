@@ -23,8 +23,11 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/add-inventory-game', async (req, res, next) => {
   try {
-    const newGame = await Game.create(req.body)
-    res.json(newGame)
+    if (!req.user) res.sendStatus(401)
+    if (req.user.admin) {
+      const newGame = await Game.create(req.body)
+      res.json(newGame)
+    } else res.sendStatus(401)
   } catch (error) {
     next(error)
   }
@@ -32,18 +35,21 @@ router.post('/add-inventory-game', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const [numberOfAffectedRows, affectedRows] = await Game.update(req.body, {
-      where: {
-        id: req.params.id
-      },
-      returning: true,
-      plain: true
-    })
-    if (affectedRows) {
-      res.json(affectedRows)
-    } else {
-      res.sendStatus(404)
-    }
+    if (!req.user) res.sendStatus(401)
+    if (req.user.admin) {
+      const [numberOfAffectedRows, affectedRows] = await Game.update(req.body, {
+        where: {
+          id: req.params.id
+        },
+        returning: true,
+        plain: true
+      })
+      if (affectedRows) {
+        res.json(affectedRows)
+      } else {
+        res.sendStatus(404)
+      }
+    } else res.sendStatus(401)
   } catch (error) {
     next(error)
   }
@@ -51,12 +57,15 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
-    await Game.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
-    res.sendStatus(204)
+    if (!req.user) res.sendStatus(401)
+    if (req.user.admin) {
+      await Game.destroy({
+        where: {
+          id: req.params.id
+        }
+      })
+      res.sendStatus(204)
+    } else res.sendStatus(401)
   } catch (error) {
     next(error)
   }
