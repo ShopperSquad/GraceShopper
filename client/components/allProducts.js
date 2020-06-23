@@ -6,12 +6,14 @@ import {fetchProducts, addProduct, addSingleProduct} from '../store/products'
 import Product from './productCard'
 import Title from './title'
 import {addToLoggedInCart} from '../store/user'
+import {addGame} from '../store/guestCart'
 
 export class AllProducts extends React.Component {
   constructor() {
     super()
 
     this.addNewGame = this.addNewGame.bind(this)
+    this.addToStorage = this.addToStorage.bind(this)
   }
 
   componentDidMount() {
@@ -20,9 +22,13 @@ export class AllProducts extends React.Component {
   }
 
   addNewGame(gameId) {
-    console.log(this.props)
     this.props.addGameToLoggedInCart(gameId)
     this.props.history.push('/my-cart')
+  }
+
+  addToStorage(game) {
+    this.props.addGameToStorage(game)
+    this.props.history.push('/cart')
   }
 
   render() {
@@ -39,6 +45,7 @@ export class AllProducts extends React.Component {
                     key={product.id}
                     isLoggedIn={this.props.isLoggedIn}
                     addNewGame={this.addNewGame}
+                    addToStorage={this.addToStorage}
                   />
                 )
               })
@@ -56,7 +63,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   getProducts: () => dispatch(fetchProducts()),
-  addGameToLoggedInCart: id => dispatch(addToLoggedInCart(id))
+  addGameToLoggedInCart: id => dispatch(addToLoggedInCart(id)),
+  addGameToStorage: gameObj => dispatch(addGame(gameObj))
 })
 
 export default connect(mapState, mapDispatch)(AllProducts)

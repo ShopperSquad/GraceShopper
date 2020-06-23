@@ -24,7 +24,11 @@ const Product = props => {
               <i className="fas fa-cart-plus" />
             </button>
           ) : (
-            <button className="cart-btn text-center" type="button">
+            <button
+              className="cart-btn text-center"
+              type="button"
+              onClick={() => props.addToStorage(product)}
+            >
               <i className="fas fa-cart-plus" />
             </button>
           )}
