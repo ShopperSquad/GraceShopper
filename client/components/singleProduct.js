@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {fetchSingleProduct} from '../store/singleProduct'
+import {fetchSingleProduct, resetProduct} from '../store/singleProduct'
 import {deleteProduct} from '../store/products'
 import {AddToCart} from './AddToCart'
 import {addGame} from '../store/guestCart'
@@ -20,6 +20,10 @@ class singleProduct extends Component {
   componentDidMount() {
     const {getSingleProduct} = this.props
     getSingleProduct(this.props.match.params.id)
+  }
+
+  componentWillUnmount() {
+    this.props.resetView()
   }
 
   addNewGame(gameId) {
@@ -124,7 +128,8 @@ const mapDispatch = dispatch => {
     getSingleProduct: id => dispatch(fetchSingleProduct(id)),
     removeProduct: id => dispatch(deleteProduct(id)),
     addGameToStorage: gameObj => dispatch(addGame(gameObj)),
-    addGameToLoggedInCart: id => dispatch(addToLoggedInCart(id))
+    addGameToLoggedInCart: id => dispatch(addToLoggedInCart(id)),
+    resetView: () => dispatch(resetProduct())
   }
 }
 
