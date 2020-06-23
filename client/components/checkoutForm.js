@@ -8,11 +8,11 @@ export const CheckoutForm = props => {
       <Container>
         <h1>Checkout</h1>
         <Row className="justify-content-lg-around">
-          <Col lg={8}>
-            <h3>Shipping Address</h3>
-            <Form onSubmit={props.handleSubmit}>
-              <Form.Row>
-                <Col lg={6}>
+          <Col lg={10}>
+            <Form onSubmit={props.handleSubmit} className="order-form">
+              <h3 className="billing-shipping-header">Shipping Address</h3>
+              <Form.Row className="justify-content-lg-around">
+                <Col lg={5}>
                   <Form.Group controlId="checkoutFName">
                     <Form.Label>First Name</Form.Label>
                     <Form.Control
@@ -22,7 +22,7 @@ export const CheckoutForm = props => {
                     />
                   </Form.Group>
                 </Col>
-                <Col lg={6}>
+                <Col lg={5}>
                   <Form.Group md="6" controlId="checkoutLName">
                     <Form.Label>Last Name</Form.Label>
                     <Form.Control
@@ -33,8 +33,8 @@ export const CheckoutForm = props => {
                   </Form.Group>
                 </Col>
               </Form.Row>
-              <Form.Row>
-                <Col>
+              <Form.Row className="justify-content-lg-around">
+                <Col lg={11}>
                   <Form.Group controlId="checkoutAddress1">
                     <Form.Label>Address 1</Form.Label>
                     <Form.Control
@@ -45,22 +45,22 @@ export const CheckoutForm = props => {
                   </Form.Group>
                 </Col>
               </Form.Row>
-              <Form.Row>
-                <Col>
+              <Form.Row className="justify-content-lg-around">
+                <Col lg={11}>
                   <Form.Group controlId="checkoutAddress2">
                     <Form.Label>Address 2</Form.Label>
                     <Form.Control type="text" placeholder="Address 2" />
                   </Form.Group>
                 </Col>
               </Form.Row>
-              <Form.Row>
-                <Col lg={6}>
+              <Form.Row className="justify-content-lg-around">
+                <Col lg={5}>
                   <Form.Group controlId="checkoutCity">
                     <Form.Label>City</Form.Label>
                     <Form.Control required type="text" placeholder="City" />
                   </Form.Group>
                 </Col>
-                <Col lg={4}>
+                <Col lg={2}>
                   <Form.Group controlId="checkoutState">
                     <Form.Label>State</Form.Label>
                     <Form.Control required type="text" placeholder="State" />
@@ -73,9 +73,9 @@ export const CheckoutForm = props => {
                   </Form.Group>
                 </Col>
               </Form.Row>
-              <h3>Payment Info</h3>
-              <Form.Row>
-                <Col>
+              <h3 className="billing-shipping-header">Payment Info</h3>
+              <Form.Row className="justify-content-lg-around">
+                <Col lg={5}>
                   <Form.Group controlId="ccName">
                     <Form.Label>Cardholder Name</Form.Label>
                     <Form.Control
@@ -85,7 +85,7 @@ export const CheckoutForm = props => {
                     />
                   </Form.Group>
                 </Col>
-                <Col>
+                <Col lg={5}>
                   <Form.Group controlId="ccNum">
                     <Form.Label>Card Number</Form.Label>
                     <Form.Control
@@ -96,8 +96,8 @@ export const CheckoutForm = props => {
                   </Form.Group>
                 </Col>
               </Form.Row>
-              <Form.Row>
-                <Col>
+              <Form.Row className="justify-content-lg-around">
+                <Col lg={5}>
                   <Form.Group controlId="ccExp">
                     <Form.Label>Expiration Date</Form.Label>
                     <Form.Control
@@ -107,7 +107,7 @@ export const CheckoutForm = props => {
                     />
                   </Form.Group>
                 </Col>
-                <Col>
+                <Col lg={5}>
                   <Form.Group controlId="ccSecurityNum">
                     <Form.Label>Security Number</Form.Label>
                     <Form.Control
@@ -118,7 +118,11 @@ export const CheckoutForm = props => {
                   </Form.Group>
                 </Col>
               </Form.Row>
-              <Button type="submit">Submit Order</Button>
+              <Form.Row className="justify-content-lg-center">
+                <Button type="submit" className="submit-order-btn">
+                  Submit Order
+                </Button>
+              </Form.Row>
             </Form>
           </Col>
         </Row>

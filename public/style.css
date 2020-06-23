@@ -119,6 +119,8 @@ table {
   border-radius: 8px;
 }
 
-#billing-header {
-  margin-top: 50px;
+.billing-shipping-header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 15px;
 }
