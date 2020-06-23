@@ -2,7 +2,6 @@ const GET_LOCAL_CART = 'GET_LOCAL_CART'
 const REMOVE_GUEST_CART_ITEM = 'REMOVE_GUEST_CART_ITEM'
 const ADD_GAME_TO_GUEST_CART = 'ADD_GAME_TO_GUEST_CART'
 const UPDATE_ITEM_QUANT_GUEST_CART = 'UPDATE_ITEM_QUANT_GUEST_CART'
-const CHECKOUT_GUEST = 'CHECKOUT_GUEST'
 
 //action creator
 const gotCart = localCart => {
@@ -30,13 +29,6 @@ const updatedItem = quantCart => {
   return {
     type: UPDATE_ITEM_QUANT_GUEST_CART,
     quantCart
-  }
-}
-
-const checkedOutGuest = cart => {
-  return {
-    type: CHECKOUT_GUEST,
-    cart
   }
 }
 
@@ -87,14 +79,6 @@ export const updateGuestItemQuant = (value, id) => {
   }
 }
 
-export const checkoutGuest = () => {
-  return dispatch => {
-    const emptyCart = {}
-    dispatch(checkedOutGuest(emptyCart))
-    localStorage.setItem('RSGC', JSON.stringify(emptyCart))
-  }
-}
-
 //reducer
 export default function guestCartReducer(state = {}, action) {
   switch (action.type) {
@@ -106,8 +90,6 @@ export default function guestCartReducer(state = {}, action) {
       return action.increasedCart
     case UPDATE_ITEM_QUANT_GUEST_CART:
       return action.quantCart
-    case CHECKOUT_GUEST:
-      return action.cart
     default:
       return state
   }

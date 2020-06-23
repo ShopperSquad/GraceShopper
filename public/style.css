@@ -90,32 +90,12 @@ table {
   border: none;
 }
 
-.submit-order-btn {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
 #order-summary td {
   border: none;
 }
 
-.order-summary {
-  border: 1px solid black;
-}
-
 .order-sum-total {
   height: 100px;
-}
-
-.order-form {
-  border: 2px solid black;
-  border-radius: 8px;
-}
-
-.billing-shipping-header {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 15px;
 }
 
 .game-form-box {
