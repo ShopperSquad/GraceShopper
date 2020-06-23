@@ -2,7 +2,6 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 const {Game} = require('../db/models')
 const {Cart} = require('../db/models')
-const {check} = require('prettier')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
