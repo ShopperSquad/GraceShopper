@@ -19,7 +19,7 @@
 [x] - _No one else should be able to edit my cart except me._
 
 [ ] - "checkout" the items in my cart so I can purchase my desired goods.
-_You can just start with by simulating the experience of checking out with a simple confirmation page._
+      _You can just start with by simulating the experience of checking out with a simple confirmation page._
 
 [x] - _Think of a typical user experience on popular websites from a guest user and logged-in user perspective._
 
@@ -47,8 +47,8 @@ _i.e. each customer that creates an account should only be able to do so once wi
 ### As an engineer, I want to:
 
 [x] - have a well-seeded database so that I am able to simulate a number of different scenarios for the user stories below.
-_By doing this, you really set yourselves up to tackle many of the points throughout the tiers. In the long run, this will save you, potentially, tons of time._
-_For example, seed hundreds of products with dummy data so that when you get to the “pagination” user story, you won’t have to worry about adding more products._
+  _By doing this, you really set yourselves up to tackle many of the points throughout the tiers. In the long run, this will save you, potentially, tons of time._
+  _For example, seed hundreds of products with dummy data so that when you get to the “pagination” user story, you won’t have to worry about adding more products._
 
 [x] - _Likewise, add a bunch of users with products in their carts so editing the cart can be worked on without already having the “add to cart” functionality built out._
 
@@ -61,7 +61,7 @@ _For example, seed hundreds of products with dummy data so that when you get to 
 ### As a customer, I want to be able to:
 
 [ ] - see all products that belong to a certain category.
-Keep this simple. For example, a product can only belong to one category.\_
+    Keep this simple. For example, a product can only belong to one category._
 
 [x] - explore an aesthetically pleasing website so I can easily navigate around and enjoy the experience (UI/UX).
 
@@ -70,7 +70,7 @@ Keep this simple. For example, a product can only belong to one category.\_
 [x] - have a persistent cart so I can revisit and pick up where I left off.
 
 [x] - **Guest-only:** I don't want to create an account, but I want my cart to persist between browser refreshes.
-(Look into front-end storage for this one.)
+      (Look into front-end storage for this one.)
 
 [ ] - **Guest-to-logged-in-user:** Initially, I'm not logged in, and I add items to my cart. When I eventually log in, I want to see those same items I added when I was logged in still in my cart, in addition to the items I may have had in my cart from a previous logged in session.
 
