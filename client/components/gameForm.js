@@ -64,14 +64,22 @@ const GameForm = props => {
           name="quantity"
           value={quantity}
         />
-        <Form.Label>Console</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Which console?"
-          onChange={handleChange}
-          name="console"
-          value={console}
-        />
+        <Form.Group>
+          <Form.Label>Console</Form.Label>
+          <Form.Control
+            placeholder="Which console?"
+            value={console}
+            name="console"
+            onChange={handleChange}
+            as="select"
+          >
+            <option>NES</option>
+            <option>Sega Genesis</option>
+            <option>Game Boy</option>
+            <option>SNES</option>
+            <option>Playstation</option>
+          </Form.Control>
+        </Form.Group>
         <Button type="submit">Submit</Button>
       </Form.Group>
     </Form>

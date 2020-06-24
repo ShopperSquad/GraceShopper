@@ -16,8 +16,8 @@ export const UserHome = props => {
         <h1 className="text-capitalize font-weight-bold">Welcome, {email}</h1>
       </div>
       {isAdmin ? (
-        <div>
-          <div>
+        <div className="single-game-form">
+          <div className="single-game-form-comp">
             <h3> You are an Admin. </h3>
             <Link to="/my-cart">Test Cart Functionality</Link>
             <br />
