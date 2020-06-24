@@ -129,8 +129,8 @@ table {
 .single-game-form {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
   height: 300px;
 }
 

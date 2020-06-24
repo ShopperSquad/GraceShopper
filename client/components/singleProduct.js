@@ -65,12 +65,15 @@ class singleProduct extends Component {
                 </strong>
               </h4>
               <p className="text-capitalize font-weight-bold mt-3 mb-0">
-                <span className="text-black lead text-muted">
-                  {arr.description}
-                </span>
+                <strong>
+                  Description :{' '}
+                  <span className="text-black lead text-muted">
+                    {arr.description}
+                  </span>
+                </strong>
               </p>
               <h5 className="text-title  mt-3 mb-2">
-                Console : <span className="text-uppercase">{arr.console}</span>
+                Console : <span>{arr.console}</span>
               </h5>
               <h6 className="text-capitalize font-weight-bold mt-3 mb-0">
                 Quantity :{' '}
