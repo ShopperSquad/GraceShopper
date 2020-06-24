@@ -57,17 +57,17 @@ class singleProduct extends Component {
               <img src={arr.imageUrl} className="img-fluid" alt={arr.name} />
             </div>
 
-            <div className="col-10 col-md-6 my-3 text-capitalize">
+            <div className="col-10 col-md-6 my-3">
               <h4 className="text-black">
                 <strong>
                   {' '}
                   Price : <span>$</span> {arr.price / 100}{' '}
                 </strong>
               </h4>
-              <p className="text-capitalize font-weight-bold mt-3 mb-0">
+              <p className="font-weight-bold mt-3 mb-0">
                 <strong>
                   Description :{' '}
-                  <span className="text-black lead text-muted">
+                  <span className="text-black text-muted">
                     {arr.description}
                   </span>
                 </strong>
